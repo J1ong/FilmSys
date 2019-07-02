@@ -1,0 +1,110 @@
+@media (min-width: 240px) {
+  html {
+    font-size: 32px;
+  }
+}
+@media (min-width: 320px) {
+  html {
+    font-size: 42.66667px;
+  }
+}
+@media (min-width: 360px) {
+  html {
+    font-size: 48px;
+  }
+}
+@media (min-width: 375px) {
+  html {
+    font-size: 50px;
+  }
+}
+@media (min-width: 384px) {
+  html {
+    font-size: 51.2px;
+  }
+}
+@media (min-width: 411px) {
+  html {
+    font-size: 54.8px;
+  }
+}
+@media (min-width: 414px) {
+  html {
+    font-size: 55.2px;
+  }
+}
+@media (min-width: 424px) {
+  html {
+    font-size: 56.53333px;
+  }
+}
+@media (min-width: 480px) {
+  html {
+    font-size: 64px;
+  }
+}
+@media (min-width: 540px) {
+  html {
+    font-size: 72px;
+  }
+}
+@media (min-width: 640px) {
+  html {
+    font-size: 85.33333px;
+  }
+}
+@media (min-width: 720px) {
+  html {
+    font-size: 96px;
+  }
+}
+@media (min-width: 750px) {
+  html {
+    font-size: 100px;
+  }
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 102.4px;
+  }
+}
+@media (min-width: 800px) {
+  html {
+    font-size: 106.66667px;
+  }
+}
+@media (min-width: 980px) {
+  html {
+    font-size: 130.66667px;
+  }
+}
+@media (min-width: 1024px) {
+  html {
+    font-size: 136.53333px;
+  }
+}
+@media (min-width: 1080px) {
+  html {
+    font-size: 144px;
+  }
+}
+@media (min-width: 1152px) {
+  html {
+    font-size: 153.6px;
+  }
+}
+@media (min-width: 1366px) {
+  html {
+    font-size: 182.13333px;
+  }
+}
+@media (min-width: 1440px) {
+  html {
+    font-size: 192px;
+  }
+}
+@media (min-width: 2160px) {
+  html {
+    font-size: 288px;
+  }
+}

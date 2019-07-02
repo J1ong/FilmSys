@@ -1,0 +1,162 @@
+<template>
+    <div id="my">
+      <div
+        class="header"
+        @click="viewUserInfo"
+      >
+        <div class="left">
+          <div class="avatar">
+            <img :src="avatar" alt="">
+          </div>
+          <span @click="$router.push('login')" v-if="!jsonData.user_id" class="go-login">立即登录</span>
+          <div v-else class="user-info">
+            <span>{{jsonData.user_name}}</span>
+            <span class="ellipsis">{{jsonData.sign?jsonData.sign:'同学有点懒，还没写下签名'}}</span>
+          </div>
+        </div>
+        <span class="right icon-more" v-if="jsonData.user_name"></span>
+      </div>
+      <div class="content">
+          <div class="list">
+            <div class="item" @click="viewMyOrder">我的订单 <span class="icon-more"></span></div>
+            <div class="item" @click="viewMyMovie(1)">想看的电影 <span class="icon-more"></span></div>
+            <div class="item" @click="viewMyMovie(0)">看过的电影 <span class="icon-more"></span></div>
+          </div>
+      </div>
+    </div>
+</template>
+
+<script>
+    import {getUserInfo} from '../../api/index'
+    import {Indicator} from 'mint-ui'
+    export default {
+        name: "My",
+        data(){
+          return{
+            jsonData:{},
+            avatar:'http://localhost:3000/images/avatar/userIcon.png'
+          }
+        },
+        created(){
+          this.loadUserInfo();
+        },
+        methods:{
+          //用户头像
+          userAvatar(){
+            if (this.jsonData){
+              this.avatar = 'http://localhost:3000'+this.jsonData.avatar
+            } else {
+              this.avatar = 'http://localhost:3000/images/avatar/userIcon.png'
+            }
+          },
+          //加载用户信息
+          async loadUserInfo(){
+            if (this.$cookies.get('user_id')) {
+              Indicator.open('Loading...');
+              let json = await getUserInfo(this.$cookies.get('user_id'));
+              if (json.success_code===200) {
+                this.jsonData = json.data;
+                this.userAvatar();
+              } else {
+                this.jsonData = {};
+              }
+              Indicator.close();
+            } else{
+              this.jsonData = {};
+              Indicator.close();
+            }
+          },
+          //查看个人信息
+          viewUserInfo(){
+            if (this.$cookies.get('user_id')) {
+              this.$router.push('my_info')
+            }
+          },
+          //查看个人订单
+          viewMyOrder(flag){
+            if (this.$cookies.get('user_id')) {
+              this.$router.push({path:'my_order',query:{'user_id':this.$cookies.get('user_id')}});
+            } else{
+              this.$router.push('login');
+            }
+          },
+          //查看个人电影
+          viewMyMovie(flag){
+            if (this.$cookies.get('user_id')) {
+              this.$router.push({path:'my_movie',query:{'user_id':this.$cookies.get('user_id'),'wish_movie':flag}});
+            } else{
+              this.$router.push('login');
+            }
+          }
+        },
+    }
+</script>
+
+<style scoped lang="stylus" ref="stylesheet/stylus">
+  #my
+    width 100%
+    height 100%
+    .header
+      font-size .3125rem
+      font-weight bolder
+      height 2.4rem
+      display flex
+      justify-content space-between
+      align-items center
+      background-color #dd2727
+      color #fff
+      position relative
+      .left
+        width 4rem
+        height 2rem
+        position relative
+        display flex
+        justify-content center
+        align-items center
+        margin-left .4rem
+        .avatar
+          position absolute
+          box-sizing border-box
+          border .08rem solid #f1f1f1
+          left 0
+          width 1.4rem
+          height 1.4rem
+          border-radius 50%
+          overflow hidden
+          font-size 0
+          img
+            width 100%
+            height 100%
+        .go-login
+          position absolute
+          left 1.6rem
+        .user-info
+          width 80%
+          position absolute
+          left 1.6rem
+          display flex
+          flex-flow column
+          span:last-child
+            margin-top .25rem
+            font-size .25rem
+      .right
+        font-weight bolder
+        margin-right .4rem
+    .content
+      border-top .4rem solid #f1f1f1
+      font-size .3125rem
+      position fixed
+      top 2.4rem
+      left 0
+      bottom 0
+      width 100%
+      background-color #f1f1f1
+      .list
+        background-color #fff
+        .item
+          display flex
+          justify-content space-between
+          align-items center
+          padding .3rem
+          border-bottom .12rem solid #f1f1f1
+</style>

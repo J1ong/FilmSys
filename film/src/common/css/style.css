@@ -1,0 +1,124 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?tan3cd');
+  src:  url('fonts/icomoon.eot?tan3cd#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?tan3cd') format('truetype'),
+    url('fonts/icomoon.woff?tan3cd') format('woff'),
+    url('fonts/icomoon.svg?tan3cd#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-logout:before {
+  content: "\e919";
+  color: #fff;
+}
+.icon-empty-content:before {
+  content: "\e918";
+  color: #d7d6d4;
+}
+.icon-eye-close-fill:before {
+  content: "\e915";
+  color: #888;
+}
+.icon-eye-open-fill:before {
+  content: "\e916";
+  color: #888;
+}
+.icon-film-logo:before {
+  content: "\e917";
+  color: #dd2727;
+}
+.icon-circle-selected-fill:before {
+  content: "\e911";
+  color: #fe5200;
+}
+.icon-alipay:before {
+  content: "\e912";
+  color: #0095e0;
+}
+.icon-circle-unselect:before {
+  content: "\e913";
+  color: #888;
+}
+.icon-wechat:before {
+  content: "\e914";
+  color: #41b035;
+}
+.icon-empty-seat:before {
+  content: "\e90e";
+  color: #fff;
+}
+.icon-selected-seat:before {
+  content: "\e90f";
+  color: #6dbd00;
+}
+.icon-sold-seat:before {
+  content: "\e910";
+  color: #dd2727;
+}
+.icon-tel:before {
+  content: "\e90c";
+}
+.icon-address:before {
+  content: "\e90d";
+}
+.icon-close:before {
+  content: "\e90b";
+}
+.icon-fold:before {
+  content: "\e903";
+}
+.icon-like:before {
+  content: "\e904";
+}
+.icon-like-fill:before {
+  content: "\e905";
+}
+.icon-star:before {
+  content: "\e906";
+}
+.icon-star-fill:before {
+  content: "\e907";
+}
+.icon-support:before {
+  content: "\e908";
+}
+.icon-support-fill:before {
+  content: "\e909";
+}
+.icon-back:before {
+  content: "\e90a";
+}
+.icon-more:before {
+  content: "\e900";
+}
+.icon-search:before {
+  content: "\e901";
+}
+.icon-unfold:before {
+  content: "\e902";
+}
+.icon-shop:before {
+  content: "\e91e";
+  color: #ff852e;
+}
+.icon-time:before {
+  content: "\e924";
+  color: #fff;
+}
