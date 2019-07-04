@@ -8,28 +8,10 @@
       </div>
       <div class="tab-content" ref='container'>
         <div class="panel" v-show="isHotMovie">
-          <div class="item" v-for="(item,index) in hotMovieList" :key="index">
-            <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})">
-            <div class="info">
-              <div class="name">{{item.name}}</div>
-              <div class="score">评分 <span class="number">{{!item.score?'暂无':(item.score).toFixed(1)}}</span></div>
-              <div class="type">{{item.type}}</div>
-              <div class="actors ellipsis">主演:<span>{{item.actor}}</span></div>
-            </div>
-            <span class="buy" @click="$router.push({path:'/select_cinema',query:{movie_id:item.movie_id}})">购票</span>
-          </div>
+          <movie-item :movie-list="hotMovieList"></movie-item>
         </div>
         <div class="panel" v-show="!isHotMovie">
-          <div class="item" v-for="(item,index) in notShowMovieList" :key="index">
-            <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})">
-            <div class="info">
-              <div class="name">{{item.name}}</div>
-              <div class="people"><span class="number">{{!item.wish_num?'暂无':item.wish_num}}</span>人想看</div>
-              <div class="type">{{item.type}}</div>
-              <div class="actors ellipsis">主演:<span>{{item.actor}}</span></div>
-            </div>
-            <span class="presell" @click="$router.push({path:'/select_cinema',query:{movie_id:item.movie_id}})">预售</span>
-          </div>
+          <movie-item :movie-list="notShowMovieList"></movie-item>
         </div>
       </div>
     </div>
@@ -38,10 +20,14 @@
 <script>
     import {getMovieList} from '../../api/index'
     import {Indicator} from 'mint-ui'
-    import Index from "element-ui/lib/utils/popup";
+    import Index from "element-ui/lib/utils/popup"
+    import MovieItem from '../../components/MovieItem/MovieItem'
     export default {
       name: "Movie",
-      components: {Index},
+      components: {
+        Index,
+        MovieItem
+      },
       created(){
         Indicator.open('Loading...');
         this.loadMovieList();
@@ -128,39 +114,45 @@
           display flex
           justify-content space-around
           align-items center
-          padding .25rem 0
+          padding .2rem 0
           border-bottom .03rem solid #f1f1f1
           img
             display inline-block
             width 20%
-            border-radius .1rem
           .info
             width 68%
             display flex
             flex-flow column
             padding .25rem
-            font-size .25rem
+            font-size .28rem
             color #9d9d9d
             .name
-              font-weight bolder
+              font-weight 700
+              font-size .345rem
               padding-bottom .2rem
               color #333
             .type
-              padding-bottom .2rem
+              padding-bottom .12rem
             .people
-              padding-bottom .2rem
+              padding-bottom .12rem
               .number
                 color #ffb400
+                font-family PingFangSC-Regular,Hiragino Sans GB,sans-serif
+                font-weight 700
+                font-size .315rem
             .score
-              padding-bottom .2rem
+              padding-bottom .12rem
               .number
                 color #ffb400
+                font-family PingFangSC-Regular,Hiragino Sans GB,sans-serif
+                font-weight 700
+                font-size .315rem
           .buy
             width 12%
             padding .16rem .12rem
             text-align center
             background-color #dd2727
-            border-radius 24%
+            border-radius .08rem
             font-size .25rem
             color #fff
           .presell
@@ -168,7 +160,7 @@
             width 12%
             padding .16rem .12rem
             text-align center
-            border-radius 20%
+            border-radius .08rem
             font-size .25rem
             color #fff
 </style>

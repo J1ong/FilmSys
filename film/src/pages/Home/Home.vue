@@ -1,6 +1,6 @@
 <template>
     <div id="home">
-        <div :class="['search-header',{'active':searchColor}]">
+        <div :class="['search-header',{'active':headerActive}]">
           <span class="location">广州</span>
           <span class="search"><span class="icon-search"></span><input type="text" placeholder="找电影、影院" @focus="$router.push('search_all')"></span>
           <span class="date"><span class="calender"><span class="day">{{new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}}</span></span></span>
@@ -73,7 +73,7 @@
         data(){
           return{
             //是否显示头部搜索背景颜色
-            searchColor:false,
+            headerActive:false,
             //服务器地址
             server:'http://localhost:3000',
             //热门电影列表
@@ -101,7 +101,7 @@
       methods:{
         //处理滚动
         handleScroll(){
-          window.pageYOffset>window.innerWidth*80/360 ? this.searchColor = true : this.searchColor = false
+          window.pageYOffset>window.innerWidth*80/360 ? this.headerActive = true : this.headerActive = false
         },
         //加载电影列表
         async loadMovieList(){
@@ -119,6 +119,8 @@
           this.notShowMovieList.sort((a,b)=>{
             return b.wish_num-a.wish_num;
           });
+          console.log('this.hotMovieList------>',this.hotMovieList);
+          console.log('this.notShowMovieList------>',this.hotMovieList);
           Indicator.close();
         }
       }
@@ -141,6 +143,7 @@
       align-items center
       &.active
         background-color #dd2727
+        transition all .2s
       .location
         border 0.0125rem solid #f1f1f1
         border-radius 0.2rem

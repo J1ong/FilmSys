@@ -10,17 +10,7 @@
     <div class="content">
       <div class="movie-container" v-if="movieInfo.length">
         <!--<div class="title">影片</div>-->
-        <div class="item" v-for="(item,index) in movieInfo" :key="index">
-          <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})">
-          <div class="info">
-            <div class="name">{{item.name}}</div>
-            <div class="score">评分 <span class="number">{{item.score?(item.score).toFixed(1):'暂无'}}</span></div>
-            <div class="type">{{item.type}}</div>
-            <div class="actors ellipsis">主演:<span>{{item.actor}}</span></div>
-          </div>
-          <span class="buy" v-if="Boolean(new Date(item.public_date)-new Date()<=0)" @click="$router.push({path:'/select_cinema',query:{movie_id:item.movie_id}})">购票</span>
-          <span class="presell" v-else @click="$router.push({path:'/select_cinema',query:{movie_id:item.movie_id}})">预售</span>
-        </div>
+        <movie-item :movie-list="movieInfo"></movie-item>
       </div>
       <div class="tips" v-else-if="name">
         <span class="icon icon-empty-content"></span>
@@ -32,8 +22,12 @@
 
 <script>
     import {matchMovieByName} from '../../../api/index'
+    import MovieItem from '../../../components/MovieItem/MovieItem'
     export default {
         name: "SearchMovie",
+        components:{
+          MovieItem
+        },
         data(){
           return{
             name:'',

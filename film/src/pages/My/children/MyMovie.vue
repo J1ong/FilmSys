@@ -10,17 +10,7 @@
           <span :class="{active:isWatched}" @click="changeOption">看过</span>
         </div>
         <div v-show="!isWatched" class="want">
-          <div class="item" v-for="(item,index) in wishMovie" :key="index" v-if="wishMovie.length">
-            <img :src="server+item.poster" alt="" @click="$router.push({path:'movie_detail',query:{'movie_id':item.movie_id}})">
-            <div class="info">
-              <div class="name">{{item.name}}</div>
-              <div class="score">评分 <span class="number">{{item.score?item.score:'暂无'}}</span></div>
-              <div class="actors ellipsis">主演:<span>{{item.actor}}</span></div>
-              <div class="show">{{item.public_date}}大陆上映</div>
-            </div>
-            <span class="presell" v-if="Boolean(new Date(item.public_date)-new Date()>=0)" @click="$router.push({path:'select_cinema',query:{'movie_id':item.movie_id}})">预售</span>
-            <span class="buy" v-else @click="$router.push({path:'select_cinema',query:{'movie_id':item.movie_id}})">购买</span>
-          </div>
+          <movie-item :movie-list="wishMovie"></movie-item>
           <div class="tips" v-if="wishMovie.length===0">
             <span class="icon icon-empty-content"></span>
             <span class="text">暂时木有内容呀</span>
@@ -56,8 +46,12 @@
     import Vue from 'vue'
     import {Rate} from 'element-ui'
     Vue.use(Rate);
+    import MovieItem from '../../../components/MovieItem/MovieItem'
     export default {
         name: "MyMovie",
+        components:{
+          MovieItem
+        },
         data(){
           return{
             isWatched:false,
