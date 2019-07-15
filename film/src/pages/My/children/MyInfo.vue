@@ -62,7 +62,7 @@
 
 <script>
     import Vue from 'vue'
-    import {Actionsheet,DatetimePicker,MessageBox} from 'mint-ui';
+    import {Actionsheet,DatetimePicker,MessageBox,Indicator} from 'mint-ui';
     import moment from 'moment'
     import {Input} from 'element-ui'
     Vue.use(Input);
@@ -95,6 +95,7 @@
           }
         },
         created(){
+          Indicator.open('Loading...');
           this.loadUserInfo();
         },
         methods:{
@@ -123,6 +124,7 @@
             } else{
               this.jsonData = {};
             }
+            Indicator.close();
           },
           //保存用户信息
           async saveUserInfo(){
@@ -196,6 +198,7 @@
         left .3rem
       .name
         width 60%
+        font-size .345rem
         text-align center
       .save-btn
         position absolute
@@ -213,8 +216,8 @@
           display flex
           justify-content space-between
           align-items center
-          padding .3rem
-          border-bottom .04rem solid #f1f1f1
+          padding .36rem
+          border-bottom .02rem solid #f1f1f1
           &:last-child
             padding-top 0
           .el-textarea
@@ -239,13 +242,14 @@
         position fixed
         bottom 0
         width 100%
-        height .8rem
         left 0
         line-height .8rem
         text-align center
         display flex
         justify-content center
         align-items center
+        padding .25rem
+        box-sizing border-box
         .logout-btn
           width 100%
           height 100%

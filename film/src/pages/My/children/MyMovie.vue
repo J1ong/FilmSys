@@ -22,7 +22,7 @@
             <div class="info">
               <div class="name">{{item.name}}</div>
               <div class="my-score">
-                <span>我评:</span>
+                <span>我评：</span>
                 <el-rate
                   v-model="item.user_score/2"
                   allow-half
@@ -45,6 +45,7 @@
     import {getWishMovieByUserId,getIsWatchedMovieByUserId} from '../../../api'
     import Vue from 'vue'
     import {Rate} from 'element-ui'
+    import {Indicator} from 'mint-ui'
     Vue.use(Rate);
     import MovieItem from '../../../components/MovieItem/MovieItem'
     export default {
@@ -62,7 +63,8 @@
           }
         },
         created(){
-            this.loadInfo();
+          Indicator.open('Loading...');
+          this.loadInfo();
         },
         methods:{
           async loadInfo(){
@@ -85,6 +87,7 @@
                 })
               }
             }
+            Indicator.close();
           },
           changeOption() {
             this.isWatched = !this.isWatched;
@@ -102,7 +105,7 @@
     font-size .3125rem
     .top
       width 100%
-      height .8rem
+      height 1rem
       display flex
       justify-content center
       align-items center
@@ -117,8 +120,10 @@
         left .3rem
       .name
         width 60%
+        text-align center
+        font-size .345rem
     .movie
-      margin-top .8rem
+      margin-top 1rem
       .option
         display flex
         justify-content center
@@ -139,16 +144,14 @@
           border-bottom .04rem solid #dd2727
       .want,.watched
         padding 0 .3rem
-        padding-top .8rem
+        padding-top 1rem
         .item
           display flex
           align-items center
-          padding .25rem 0
-          border-bottom .04rem solid #f1f1f1
+          padding .2rem 0
           img
             display inline-block
             width 20%
-            border-radius .1rem
           .info
             width 70%
             display flex
@@ -158,7 +161,8 @@
             color #9d9d9d
             overflow hidden
             .name
-              font-weight bolder
+              font-weight 700
+              font-size .345rem
               padding-bottom .2rem
               color #333
             .my-score
@@ -166,6 +170,7 @@
               align-items center
               color #ffb400
               padding-bottom .2rem
+              font-size .28rem
               span
                 margin-right .12rem
             .my-comment

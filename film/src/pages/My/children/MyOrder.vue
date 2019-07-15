@@ -33,6 +33,7 @@
 
 <script>
     import {getOrderByUserId} from '../../../api'
+    import {Indicator} from 'mint-ui'
     export default {
         name: "MyOrder",
         data(){
@@ -43,6 +44,7 @@
           }
         },
         created() {
+          Indicator.open('Loading...');
           this.loadInfo();
         },
         methods:{
@@ -57,6 +59,7 @@
                 });
               }
             }
+            Indicator.close();
           },
           //格式座位
           formatSeat(num){
@@ -78,7 +81,7 @@
     font-size .3125rem
     .top
       width 100%
-      height .8rem
+      height 1rem
       display flex
       justify-content center
       align-items center
@@ -93,10 +96,12 @@
         left .3rem
       .name
         width 60%
+        text-align center
+        font-size .345rem
     .order-container
       display flex
       flex-flow column
-      margin-top .8rem
+      margin-top 1rem
       width 100%
       background #f1f1f1
       .item
@@ -112,16 +117,14 @@
           display flex
           justify-content space-between
           align-items center
-          font-size .25rem
+          font-size .28rem
           color #333
         .item-top
           padding-bottom .12rem
-          border-bottom .02rem solid #f1f1f1
         .item-center
           width 100%
           justify-content flex-start
           padding .12rem 0
-          border-bottom .02rem solid #f1f1f1
           .left
             width 16%
           .right

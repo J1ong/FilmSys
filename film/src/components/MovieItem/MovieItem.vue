@@ -45,7 +45,6 @@
     justify-content space-around
     align-items center
     padding .2rem 0
-    border-bottom .03rem solid #f1f1f1
     img
       display inline-block
       width 20%

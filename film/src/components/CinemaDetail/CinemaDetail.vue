@@ -6,13 +6,13 @@
       </div>
       <div class="cinema-info">
         <span class="name">{{currentCinemaInfo.cinema_name}}</span>
-        <span class="address ellipsis"><span class="icon icon-address"></span>{{currentCinemaInfo.specified_address}}</span>
+        <span class="address"><span class="icon icon-address"></span>{{currentCinemaInfo.specified_address}}</span>
         <span class="tel"><span class="icon icon-tel"></span>{{currentCinemaInfo.cinema_phone}}</span>
       </div>
       <el-carousel
         :autoplay=false
         type="card"
-        height="4.8rem"
+        height="5rem"
         arrow="never"
         :loop=false
         :initial-index=0
@@ -25,7 +25,7 @@
       </el-carousel>
       <div class="movie-info" v-for="(item,index) in hasMovieInfo" :key="index" v-show="movieIndex===Number(index)">
         <span class="arrow"></span>
-        <span class="main"><span class="name">{{item.name}}</span><span class="score"><span class="num">{{item.score===null?'暂无':item.score}}</span>分</span></span>
+        <span class="main"><span class="name">{{item.name}}</span><span class="score"><span class="num" v-if="item.score">{{item.score.toFixed(1)}}分</span><span v-else style="font-size: .28rem">暂无评分</span></span></span>
         <span class="intro">
         <span class="time">{{item.movie_long}}</span><span class="split">|</span><span class="type">{{item.type}}</span><span class="split">|</span><span class="actors">{{item.actor}}</span>
         </span>
@@ -212,7 +212,7 @@
     font-size .3125rem
     .top
       width 100%
-      height .8rem
+      height 1rem
       display flex
       justify-content center
       align-items center
@@ -228,23 +228,29 @@
         left .3rem
       .name
         width 60%
+        font-size .375rem
+        text-align center
+        line-height .375rem
     .cinema-info
-      margin-top .8rem
+      margin-top 1rem
       color #888
       display flex
       flex-flow column
       padding .25rem
       .name
         color #000
-        font-weight bolder
-        margin-bottom .12rem
+        font-size .345rem
+        font-weight 700
+        margin-bottom .25rem
       .address,.tel
         margin-bottom .12rem
-        font-size .25rem
+        font-size .28rem
+        line-height .375rem
         display flex
-        align-items center
+        letter-spacing .02rem
+        align-items flex-start
         .icon
-          font-size .3rem
+          font-size .375rem
           margin-right .08rem
     .movie-info
       height 1.4rem
@@ -257,16 +263,18 @@
         margin-top -.38rem
         z-index 999
       .main
-        font-size .3125rem
+        font-size .345rem
         .name
           line-height .8rem
-          font-weight bolder
+          font-weight 700
         .score
           color #ffb400
           margin-left .25rem
           font-size .1rem
           .num
-            font-size .3rem
+            font-size .3125rem
+            font-weight 700
+            font-family PingFangSC-Regular, Hiragino Sans GB, sans-serif
       .intro
         font-size .25rem
         color #888
@@ -275,7 +283,7 @@
     .el-carousel
       background linear-gradient(to bottom, #242342 0%,#11182B 100%)
       .el-carousel__item
-        margin-top .12rem
+        margin-top .25rem
         height 90%
         a
           font-size .3125rem

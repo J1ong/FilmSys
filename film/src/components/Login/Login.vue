@@ -202,7 +202,7 @@
     font-size .3125rem
     .top
       width 100%
-      height .8rem
+      height 1rem
       display flex
       justify-content center
       align-items center
@@ -211,7 +211,7 @@
       left 0
       color #dd2727
       .icon-close
-        font-size .5rem
+        font-size .6rem
         position absolute
         left .3rem
       .name
@@ -247,7 +247,8 @@
         background-color #fff
         .login-type
           width 100%
-          font-size .275rem
+          font-size .25rem
+          font-weight 700
           display flex
           justify-content center
           align-items center
@@ -283,6 +284,8 @@
                   border .02rem solid #888
                   border-radius .12rem
                   outline 0
+                  &:focus
+                    border: 0.02rem solid #dd2727;
               .login-info > button
                 position absolute
                 top 50%
@@ -305,7 +308,7 @@
                 height 68%
               .login-hint
                 color #888
-                font-size .25rem
+                font-size .24rem
                 line-height 20px
                 > a
                   color #dd2727
@@ -313,7 +316,7 @@
               display block
               width 70%
               height .8rem
-              margin .25rem auto
+              margin .16rem auto
               border-radius .12rem
               background #dd2727
               color #fff

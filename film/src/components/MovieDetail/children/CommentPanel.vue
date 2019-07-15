@@ -116,7 +116,7 @@
       .btn
         position absolute
         right .25rem
-        padding .16rem .14rem
+        padding .16rem .24rem
         background-color #dd2727
         color white
         border-radius .1rem

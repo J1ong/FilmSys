@@ -14,7 +14,7 @@
       </span>
       <span class="tab-item" @click="switchTo('/my')">
         <img :src="$route.path.includes('/my') ? tabBarImgArr[3].active:tabBarImgArr[3].normal">
-        <span :class="{on:$route.path.includes('/my')}">个人中心</span>
+        <span :class="{on:$route.path.includes('/my')}">我的</span>
       </span>
     </div>
 </template>
@@ -58,7 +58,7 @@
         justify-content center
         align-items center
         flex-direction column
-        font-size 0.25rem
+        font-size 0.21rem
         margin-bottom 0.041rem
         color #333
         img

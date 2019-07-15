@@ -203,7 +203,7 @@
     font-size .3125rem
     .top
       width 100%
-      height .8rem
+      height 1rem
       display flex
       justify-content center
       align-items center
@@ -218,15 +218,19 @@
         left .3rem
       .name
         width 60%
+        text-align center
+        font-size .375rem
     .movie-info
-      margin-top .8rem
+      margin-top 1rem
       display flex
       flex-flow column
       padding .25rem
       .name
         margin-bottom .25rem
+        font-size .345rem
+        font-weight 700
       .intro
-        font-size .25rem
+        font-size .28rem
         margin-bottom .25rem
         color #888
         span
@@ -236,7 +240,7 @@
       background: #f1f1f1
       position absolute
       left 0
-      top 2.1rem
+      top 2.5rem
       bottom 0
       .screen
         width 4rem
@@ -327,7 +331,8 @@
       padding-top .32rem
       box-sizing border-box
       .title
-        font-size .25rem
+        font-size .28rem
+        font-weight 700
         margin-bottom .25rem
       .btn
         height .8rem

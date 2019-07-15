@@ -8,7 +8,7 @@
           <div class="avatar">
             <img :src="avatar" alt="">
           </div>
-          <span @click="$router.push('login')" v-if="!jsonData.user_id" class="go-login">立即登录</span>
+          <span @click="$router.push('login')" v-if="!jsonData.user_id" class="go-login">登录/注册</span>
           <div v-else class="user-info">
             <span>{{jsonData.user_name}}</span>
             <span class="ellipsis">{{jsonData.sign?jsonData.sign:'同学有点懒，还没写下签名'}}</span>
@@ -158,5 +158,9 @@
           justify-content space-between
           align-items center
           padding .3rem
+          font-size .28rem
+          font-weight 700
           border-bottom .12rem solid #f1f1f1
+        .icon-more
+          font-weight 700
 </style>
