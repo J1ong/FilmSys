@@ -17,7 +17,7 @@
           <div class="left">
             <div class="name ellipsis">{{item.cinema_name}}</div>
             <div class="address ellipsis">{{item.specified_address}}</div>
-            <div class="label-block"><span>4D厅</span><span>杜比全景声厅</span><span>巨幕厅</span></div>
+            <div class="label-block"><span>小吃</span><span>4D厅</span><span>杜比全景声厅</span><span>巨幕厅</span></div>
           </div>
           <!--<div class="right">-->
             <!--<div class="price-block"><span class="price">23</span>元起</div>-->
@@ -29,6 +29,7 @@
 
 <script>
     import {getMovieDetail,getCurrentMovieSchedule} from '../../api/index'
+    import {Indicator} from 'mint-ui'
     import Vue from 'vue'
     import LyTab from 'ly-tab'
     Vue.use(LyTab);
@@ -49,6 +50,7 @@
           }
         },
         created() {
+          Indicator.open('Loading...');
           this.loadInfo();
         },
         methods:{
@@ -73,6 +75,7 @@
               });
               this.dateCinemaSchedule = this.cinemaScheduleInfo[0];
             }
+            Indicator.close();
           },
           //切换日期
           changeLyTabItem(item){
@@ -104,7 +107,7 @@
     font-size .3125rem
     .top
       width 100%
-      height .8rem
+      height 1rem
       display flex
       justify-content center
       align-items center
@@ -119,9 +122,12 @@
         left .3rem
       .name
         width 60%
+        font-size .375rem
+        line-height .375rem
+        text-align center
     .ly-tab
       position fixed
-      top .8rem
+      top 1rem
       left 0
     .select
       position fixed
@@ -161,7 +167,7 @@
             border-style solid
             border-color #888 transparent transparent transparent
     .content
-      margin-top 1.8rem
+      margin-top 2rem
       font-size .3125rem
       .item
         display flex
@@ -170,15 +176,17 @@
         box-sizing border-box
         padding .25rem
         width 100%
-        border-bottom .02rem solid #f1f1f1
         margin-bottom .25rem
         .left
           width 100%
           .name
-            font-size .34rem
+            font-size .345rem
+            line-height .36rem
+            font-weight 700
             margin-bottom .25rem
           .address
             font-size .28rem
+            height .3rem
             color #666
             margin-bottom .25rem
           .label-block

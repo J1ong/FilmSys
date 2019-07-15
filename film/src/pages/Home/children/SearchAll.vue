@@ -18,7 +18,7 @@
           <div class="left">
             <div class="name ellipsis">{{item.cinema_name}}</div>
             <div class="address ellipsis">{{item.specified_address}}</div>
-            <div class="label-block"><span>4D厅</span><span>杜比全景声厅</span><span>巨幕厅</span></div>
+            <div class="label-block"><span>小吃</span><span>4D厅</span><span>杜比全景声厅</span><span>巨幕厅</span></div>
           </div>
           <!--<div class="right">-->
             <!--<div class="price-block"><span class="price">23</span>元起</div>-->
@@ -112,7 +112,7 @@
         box-sizing border-box
         border-top .04rem solid #f1f1f1
         .title
-          font-size .28rem
+          font-size .3rem
           padding-bottom .25rem
           border-bottom .03rem solid #f1f1f1
         .item
@@ -169,7 +169,7 @@
         box-sizing border-box
         border-top .04rem solid #f1f1f1
         .title
-          font-size .28rem
+          font-size .3rem
           padding-bottom .25rem
           border-bottom .03rem solid #f1f1f1
         .item
@@ -184,17 +184,20 @@
           .left
             width 100%
             .name
-              font-size .34rem
+              font-size .345rem
+              line-height .36rem
               margin-bottom .25rem
+              font-weight 700
             .address
               font-size .28rem
+              line-height .3rem
               color #666
               margin-bottom .25rem
             .label-block
               display flex
               span
                 padding .06rem
-                font-size .1rem
+                font-size .2rem
                 border .01rem solid #f90
                 margin-right .1rem
                 border-radius .04rem

@@ -38,7 +38,7 @@
               clearable>
             </el-input>
           </div>
-          <div class="text">手机号用于生成订单，并以短信方式将取票码发送到手机上</div>
+          <div class="text">提示：手机号用于生成订单，并以短信方式将取票码发送到手机上</div>
         </div>
       </div>
       <div class="bottom">
@@ -213,7 +213,7 @@
     font-size .3125rem
     .top
       width 100%
-      height .8rem
+      height 1rem
       display flex
       justify-content center
       align-items center
@@ -228,6 +228,8 @@
         left .3rem
       .name
         width 60%
+        text-align center
+        font-size .375rem
       .time-down
         position absolute
         right .3rem
@@ -238,23 +240,24 @@
           font-size .4rem
           margin-right .08rem
     .order-info
-      margin-top .8rem
+      margin-top 1rem
       background-color #779db0
       color #fff
       padding .3rem
       height 2rem
       .info
         margin-bottom .25rem
-        font-size .25rem
+        font-size .28rem
         span
           margin-right .12rem
       .movie-name
-        font-size .4rem
+        font-size .375rem
+        font-weight 700
     .content
       background-color #f1f1f1
       width 100%
       position fixed
-      top 3.4rem
+      top 3.6rem
       left 0
       bottom 0
       .phone-container
@@ -287,9 +290,11 @@
               padding 0
               letter-spacing .02rem
         .text
+          color #dd2727
           font-size .25rem
-          color #888
+          line-height .4rem
           padding .25rem .3rem
+          letter-spacing .02rem
       .tips
         display flex
         flex-flow column
@@ -300,9 +305,12 @@
           font-size .25rem
           color #888
           line-height .4rem
+          letter-spacing .02rem
+          text-align justify
         .title
           color #333
-          font-size .3rem
+          font-size .3125rem
+          font-weight 700
           padding-bottom .25rem
           border-bottom .02rem solid #f1f1f1
     .bottom
@@ -324,7 +332,7 @@
         margin-bottom .25rem
         display flex
         justify-content space-between
-        font-size .25rem
+        font-size .28rem
         padding .12rem 0
         .text
           color #ffb400

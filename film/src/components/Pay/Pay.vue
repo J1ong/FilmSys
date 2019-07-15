@@ -17,7 +17,7 @@
           <span class="left icon-shop"></span>
           <div class="right">
             <div class="total">¥{{Number(this.$cookies.get('total_price')).toFixed(2)}}</div>
-            <div class="num">订单编号:{{this.$cookies.get('order_num')}}</div>
+            <div class="num">订单编号：{{this.$cookies.get('order_num')}}</div>
           </div>
         </div>
       </div>
@@ -49,6 +49,7 @@
           }
         },
         created(){
+          Indicator.open('Loading...');
           this.loadInfo();
           if (this.$cookies.get('countdown_m')&&this.$cookies.get('countdown_m')){
             if (!this.$cookies.get('countdown_m')[1]) {
@@ -102,6 +103,7 @@
               this.seatInfo = this.scheduleInfo.seat_info;
               this.seatInfo = JSON.parse(this.seatInfo);
             }
+            Indicator.close();
           },
           async back(){
             this.$cookies.remove('countdown_m');
@@ -220,7 +222,7 @@
     font-size .3125rem
     .top
       width 100%
-      height .8rem
+      height 1rem
       display flex
       justify-content center
       align-items center
@@ -235,8 +237,10 @@
         left .3rem
       .name
         width 60%
+        font-size .345rem
+        text-align center
     .order-info
-      margin-top .8rem
+      margin-top 1rem
       height 3rem
       border-bottom .04rem dashed #f1f1f1
       .time-down
@@ -249,7 +253,7 @@
         margin 0 .25rem
         .title
           padding .2rem 0
-          font-size .25rem
+          font-size .28rem
         .time
           display flex
           justify-content center
@@ -289,12 +293,13 @@
             margin-bottom .21rem
           .num
             font-size .28rem
+            letter-spacing .02rem
     .pay-type
       border-top .2rem solid #f1f1f1
       position fixed
       width 100%
       left 0
-      top 3.8rem
+      top 4rem
       bottom 0
       background-color #f1f1f1
       .type

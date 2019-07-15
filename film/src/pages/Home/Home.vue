@@ -31,9 +31,11 @@
             <div class="body">
               <div class="item" v-for="(item,index) in hotMovieList.slice(0, 6)" :key="index">
                 <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})">
-                <div class="describe">
-                  <span class="name ellipsis">{{item.name}}</span>
-                  <span class="score" v-if="item.score"><i class="interger">{{item.score.toFixed(1).split('.')[0]}}.</i><i class="fraction">{{item.score.toFixed(1).split('.')[1]}}</i></span>
+                <div style="position: relative">
+                  <div class="describe">
+                    <span class="name ellipsis">{{item.name}}</span>
+                    <span class="score" v-if="item.score"><i class="interger">{{item.score.toFixed(1).split('.')[0]}}</i>.<i class="fraction">{{item.score.toFixed(1).split('.')[1]}}</i></span>
+                  </div>
                 </div>
                 <div class="buy" @click="$router.push({path:'/select_cinema',query:{movie_id:item.movie_id}})">购票</div>
               </div>
@@ -46,8 +48,11 @@
             <div class="body">
               <div class="item" v-for="(item,index) in notShowMovieList.slice(0,6)" :key="index">
                 <img :src="server+item.poster" alt="" @click="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})">
-                <div class="peopleNumber">
-                  <span class="number" v-if="item.wish_num">{{item.wish_num}}</span><span v-if="item.wish_num">人想看</span>
+                <div style="position: relative">
+                  <div class="peopleNumber">
+                    <span class="number" v-if="item.wish_num" style="font-family: PingFangSC-Regular,Hiragino Sans GB,sans-serif;font-size: .3rem;font-weight: 600">{{item.wish_num}}</span><span v-if="item.wish_num">人想看</span>
+                    <span class="number" v-else>暂无想看</span>
+                  </div>
                 </div>
                 <div class="presell">
                   <div class="name ellipsis">{{item.name}}</div>
@@ -190,7 +195,7 @@
           background-size: cover
           .day
             position relative
-            top .4em
+            top .45em
             color #fff
             font-size .6em
     .swiper-container
@@ -221,15 +226,16 @@
           .red-name
             flex 1
             color #dd2727
+            font-weight 600
           .blue-name
             flex 1
             color #2d98f3
+            font-weight 600
           .more
             flex 1
             text-align right
             vertical-align middle
             font-size .25rem
-            color #888
         .body
           display flex
           flex-wrap wrap
@@ -245,24 +251,28 @@
             .describe
               position absolute
               left 0
-              bottom .68rem
+              bottom 0
               width 100%
               display flex
+              align-items center
+              padding 0 .08rem
+              height .4rem;
+              box-sizing border-box
+              background-color rgba(0,0,0,.4)
               .name
                 color #fff
-                font-size .275rem
-                flex 4
-                margin-left .125rem
-                padding .1rem .04rem
+                font-size .25rem
+                flex 6
                 box-sizing border-box
                 width 100%
+                font-weight 600
               .score
                 color #ffb400
-                flex 1
-                margin-right .125rem
-                padding .1rem .08rem
+                flex 2
+                font-family  PingFangSC-Regular,Hiragino Sans GB,sans-serif
+                font-weight 700
                 .interger
-                  font-size .3125rem
+                  font-size .3rem
                 .fraction
                   font-size .25rem
             .buy
@@ -278,19 +288,22 @@
               color #ffb400
               position absolute
               left 0
-              bottom 1.12rem
+              bottom 0
               width 100%
               display flex
-              padding .1rem .04rem
-              font-size .275rem
-              margin-left .125rem
+              align-items center
+              padding 0 .08rem
+              height .4rem
+              background-color rgba(0,0,0,.4)
+              font-size .25rem
+              box-sizing border-box
             .presell
               height 1rem
               width 100%
               font-size .25rem
               .name
-               font-weight bolder
-               font-size .275rem
+               font-weight 600
+               font-size .25rem
                padding .1rem 0
                width 100%
               .info
@@ -311,9 +324,10 @@
                   color #fff
                   width 100%
                   box-sizing border-box
-                  padding .08rem 0
+                  padding .12rem 0
                   background-color #2d98f3
                   border-radius .2rem
+                  box-shadow .02rem .02rem .08rem #2d98f3
       .panel + .panel
         padding-top .25rem
 </style>

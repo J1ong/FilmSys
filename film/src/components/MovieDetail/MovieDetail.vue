@@ -8,10 +8,10 @@
         <img :src="server+jsonData.poster" alt="">
         <div class="describe">
           <div class="name">{{jsonData.name}}</div>
-          <div class="small type">{{jsonData.type}}</div>
-          <div class="small play-time">{{jsonData.movie_long}}</div>
-          <div class="small show-time">{{jsonData.public_date}}上映</div>
-          <div class="small ellipsis"><span>{{jsonData.actor}}</span></div>
+          <div class="small type">类型：{{jsonData.type}}</div>
+          <div class="small ellipsis">主演：{{jsonData.actor}}</div>
+          <div class="small play-time">片长：{{jsonData.movie_long}}</div>
+          <div class="small show-time">上映：{{jsonData.public_date}}上映</div>
         </div>
       </div>
       <div class="action">
@@ -21,7 +21,10 @@
       <div class="public-praise">
         <div class="header">
           <div class="title">口碑</div>
-          <div class="wish" v-if="isShowMovie">{{jsonData.wish_num?jsonData.wish_num:'暂无'}}人想看</div>
+          <div class="wish" v-if="isShowMovie">
+            <span v-if="jsonData.wish_num">{{jsonData.wish_num}}人想看</span>
+            <span v-else>暂无想看</span>
+          </div>
         </div>
           <div class="mark" v-if="isShowMovie">
             <div class="left">
@@ -37,7 +40,7 @@
             </div>
           </div>
           <div class="wish" v-else>
-            <span class="wish-number">{{jsonData.wish_num?jsonData.wish_num:'暂无'}}</span>人想看
+            <span class="wish-number"><span v-if="jsonData.wish_num" style="font-family: PingFangSC-Regular, Hiragino Sans GB, sans-serif;font-size: .6rem">{{jsonData.wish_num}}</span><span v-else>暂无</span></span>人想看
           </div>
       </div>
       <div class="intro">
@@ -290,7 +293,7 @@
     font-size .3125rem
     .top
       width 100%
-      height .8rem
+      height 1rem
       display flex
       justify-content center
       align-items center
@@ -305,39 +308,39 @@
        position absolute
        left .3rem
     .info
-      width 92%
+      width 90%
       padding .2rem
       box-sizing border-box
-      height 2.8rem
-      margin .8rem auto 0
+      height 3rem
+      margin 1rem auto 0
       background-color #fff
       display flex
       justify-content space-around
       align-items center
       color #333
-      border-radius .1rem
+      border-radius .2rem
       img
-        width 24%
+        width 28%
         box-sizing border-box
         border-radius .05rem
       .describe
-        width 68%
+        width 62%
         .name
-          font-size .375rem
-          font-weight bolder
+          font-size .345rem
+          font-weight 700
           margin-bottom .12rem
         .small
-          font-size .25rem
+          font-size .28rem
           margin-bottom .12rem
     .action
-      width 92%
+      width 90%
       height 1rem
       margin 0 auto
       background-color #fff
       display flex
       justify-content space-around
       align-items center
-      border-radius .1rem
+      border-radius .2rem
       .btn
         font-size .4rem
         width 36%
@@ -354,7 +357,7 @@
           font-size .25rem
           margin-left .1rem
     .public-praise
-      width 92%
+      width 90%
       height auto
       margin .2rem auto
       box-sizing border-box
@@ -370,13 +373,12 @@
           font-weight bolder
         .wish
           font-size .25rem
-          background-color #11182B
-          padding .06rem .08rem
+          padding .04rem 0
       /deep/ .mark
         width 100%
         display flex
         justify-content space-between
-        align-items center
+        align-items flex-start
         .right
           display flex
           flex-direction column
@@ -390,8 +392,8 @@
             .small
               font-size .25rem
           .score-people
-            font-size .25rem
-            color #f1f1f1
+            font-size .2rem
+            color #ffb400
         .left
           display flex
           justify-content center
@@ -410,7 +412,7 @@
           color #ffb400
           font-weight bolder
     .intro
-      width 92%
+      width 90%
       height auto
       margin .2rem auto
       box-sizing border-box
@@ -423,7 +425,7 @@
         margin-bottom .25rem
       .content
         text-align justify
-        font-size .25rem
+        font-size .28rem
         line-height .4rem
     .comment
       width 100%
@@ -452,7 +454,6 @@
           font-size .24rem
       .content
         width 100%
-        border-top 0.01rem solid #ccc
         padding .25rem
         padding-bottom 0
         box-sizing border-box
@@ -477,7 +478,6 @@
             .right
               margin 0 .25rem .25rem
               font-size .3125rem
-              border-bottom 0.01rem solid #ccc
               width 100%
               .user-name
                 font-size .25rem
