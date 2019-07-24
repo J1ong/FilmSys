@@ -84,7 +84,7 @@
               </div>
             </div>
           </div>
-          <span class="tips" v-else>暂无评论！</span>
+          <span class="tips" v-if="!currentUserCommentDate.length&&!otherUserCommentDate.length">暂无评论！</span>
         </div>
       </div>
       <div class="buy">
@@ -246,7 +246,7 @@
                     let currentIndex=-1,sum=0;
                     this.commentNum = commentJson.data.length;
                     commentJson.data.forEach((value,index)=>{
-                      if (value.user_id===this.$cookies.get('user_id')){
+                      if (value.user_id==this.$cookies.get('user_id')){
                         currentIndex = index;
                       }
                       sum+=value.user_score;
@@ -256,6 +256,7 @@
                       this.averageScore = this.averageScore.toFixed(1);
                     }
                     this.starValue = this.averageScore*0.5;
+                    console.log(currentIndex);
                     if (currentIndex===-1){
                       this.currentUserCommentDate = [];
                     } else{
@@ -497,7 +498,6 @@
                 justify-content space-between
                 align-items center
                 font-size .28rem
-                padding-bottom .25rem
                 .comment-date
                   font-size .24rem
                 .support

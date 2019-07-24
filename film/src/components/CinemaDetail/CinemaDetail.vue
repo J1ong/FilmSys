@@ -15,9 +15,10 @@
         height="5rem"
         arrow="never"
         :loop=false
-        :initial-index=0
+        :initial-index=initMovieId
         indicator-position="none"
         @change="changeCarousel"
+        v-if="carouselReset"
       >
         <el-carousel-item v-for="(item,index) in hasMovieInfo" :key="index">
           <a href="#" @click.prevent="$router.push({path:'/movie_detail',query:{movie_id:item.movie_id}})"><img :src="server+item.poster" alt=""></a>
@@ -72,6 +73,7 @@
         name: "CinemaDetail",
         data(){
           return{
+            initMovieId:0,
             //当前影院信息
             currentCinemaInfo:{},
             //影院的电影信息
@@ -81,6 +83,7 @@
             //电影某天的安排
             movieDaySchedule:[],
             hackReset:false,
+            carouselReset:true,
             movieIndex:0,
             //服务器地址
             server:'http://localhost:3000',
@@ -105,6 +108,17 @@
               json = await getCurrentCinemaMovieSchedule(this.$route.query.cinema_id);
               if (json.success_code===200){
                 this.hasMovieInfo = json.data.hasMovieInfo;
+                if(this.$route.query.movie_id){
+                  this.hasMovieInfo.forEach((val,index)=>{
+                    if (this.$route.query.movie_id==val.movie_id) {
+                      this.initMovieId = index;
+                      this.carouselReset = false;
+                      this.$nextTick(() => {
+                        this.carouselReset = true;
+                      });
+                    }
+                  });
+                }
                 let movieScheduleInfo = json.data.movieScheduleInfo;
                 let allMovieSchedule = [];
                 movieScheduleInfo.forEach((value,index)=>{
