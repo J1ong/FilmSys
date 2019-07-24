@@ -26,7 +26,7 @@
         <div class="main">
           <div class="panel">
             <div class="header">
-              <span class="red-name">正在热映</span><router-link tag="span" class="more" :to="{name:'movie'}">全部{{hotMovieList.length}}部 <span class=" icon-more"></span></router-link>
+              <span class="red-name">正在热映</span><span class="more" @click="$router.push({path:'/movie',query:{hotMovie:1}})">全部{{hotMovieList.length}}部 <span class=" icon-more"></span></span>
             </div>
             <div class="body">
               <div class="item" v-for="(item,index) in hotMovieList.slice(0, 6)" :key="index">
@@ -43,7 +43,7 @@
           </div>
           <div class="panel">
             <div class="header">
-              <span class="blue-name">即将上映</span><router-link tag="span" class="more" :to="{name:'movie'}">全部{{notShowMovieList.length}}部 <span class=" icon-more"></span></router-link>
+              <span class="blue-name">即将上映</span><span class="more" @click="$router.push({path:'/movie',query:{hotMovie:0}})">全部{{notShowMovieList.length}}部 <span class=" icon-more"></span></span>
             </div>
             <div class="body">
               <div class="item" v-for="(item,index) in notShowMovieList.slice(0,6)" :key="index">
@@ -124,8 +124,6 @@
           this.notShowMovieList.sort((a,b)=>{
             return b.wish_num-a.wish_num;
           });
-          console.log('this.hotMovieList------>',this.hotMovieList);
-          console.log('this.notShowMovieList------>',this.hotMovieList);
           Indicator.close();
         }
       }

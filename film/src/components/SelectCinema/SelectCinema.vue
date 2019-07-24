@@ -13,7 +13,7 @@
         @change="changeLyTabItem"
       />
       <div class="content">
-        <div class="item" v-for="(item,index) in dateCinemaSchedule" :key="index" @click="$router.push({path:'/cinema_detail',query:{cinema_id:item.cinema_id}})">
+        <div class="item" v-for="(item,index) in dateCinemaSchedule" :key="index" @click="$router.push({path:'/cinema_detail',query:{movie_id:$route.query.movie_id,cinema_id:item.cinema_id}})">
           <div class="left">
             <div class="name ellipsis">{{item.cinema_name}}</div>
             <div class="address ellipsis">{{item.specified_address}}</div>

@@ -30,6 +30,9 @@
       },
       created(){
         Indicator.open('Loading...');
+        if(this.$route.query.hotMovie==0){
+          this.isHotMovie = false;
+        }
         this.loadMovieList();
       },
       data(){

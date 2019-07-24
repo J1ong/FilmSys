@@ -24,7 +24,7 @@
     import Vue from 'vue'
     import {Rate} from 'element-ui'
     Vue.use(Rate);
-    import {Toast} from 'mint-ui'
+    import {Toast,MessageBox} from 'mint-ui'
     export default {
         name: "CommentPanel",
         data(){
@@ -56,12 +56,9 @@
               let commentDate = new Date().getFullYear()+'-'+(Number(new Date().getMonth())+1)+'-'+new Date().getDate();
               let json = await updateUserComment(this.$cookies.get('user_id'),this.$route.query.movie_id,this.score,this.textarea,commentDate);
               if (json.success_code===200){
-                Toast({
-                  message: '评论成功',
-                  position: 'bottom',
-                  duration: 2000
+                MessageBox.alert('评论成功，待管理员审核！').then(action => {
+                  this.$router.go(-1);
                 });
-                this.$router.go(-1);
               }
             } else{
               Toast({
