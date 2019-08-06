@@ -20,6 +20,8 @@ import My from '../pages/My/My'
 import MyInfo from '../pages/My/children/MyInfo'
 import MyOrder from '../pages/My/children/MyOrder'
 import MyMovie from '../pages/My/children/MyMovie'
+import ModifyUserName from '../pages/My/children/ModifyUserName'
+import ModifyUserSign from '../pages/My/children/ModifyUserSign'
 
 Vue.use(Router);
 
@@ -69,6 +71,16 @@ export default new Router({
       path:'/my_movie',
       name:'my_movie',
       component:MyMovie
+    },
+    {
+      path:'/modify_username',
+      name:'modify_username',
+      component:ModifyUserName
+    },
+    {
+      path:'/modify_usersign',
+      name:'modify_usersign',
+      component:ModifyUserSign
     },
     {
       path:'/search_all',

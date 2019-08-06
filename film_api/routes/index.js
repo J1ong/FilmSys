@@ -125,6 +125,118 @@ router.get('/api/getUserInfo',function(req,res){
     })
   }
 });
+//更新用户名
+router.post('/api/updateUserName',function(req,res){
+  let {
+    userId,
+    userName,
+  } = req.body;
+  if (userId){
+    let sqlStr = 'SELECT * from t_user WHERE user_id = ? LIMIT 1;';
+    conn.query(sqlStr,[userId],(error,result,field)=>{
+      if (error){
+        res.json({error_code:1,message:'用户不存在'});
+      } else{
+        sqlStr = 'SELECT * FROM t_user WHERE user_name = ? AND user_id <> ? LIMIT 1 ;';
+        conn.query(sqlStr,[userName,userId],(error,result,field)=>{
+          if (error){
+            console.log(error);
+          } else{
+            result = JSON.parse(JSON.stringify(result));
+            if (result[0]){
+              res.json({error_code:1,message:'用户名已存在！'});
+            } else{
+              //更新数据库
+              let sqlStr = 'UPDATE t_user SET user_name = ? WHERE user_id = ?;';
+              conn.query(sqlStr,[userName,userId],(error,result,field)=>{
+                if (error){
+                  res.json({error_code:1,message:'更新用户名失败'});
+                } else{
+                  res.json({success_code:200});
+                }
+              });
+            }
+          }
+        });
+      }
+    })
+  }
+});
+//更新用户性别
+router.post('/api/updateUserSex',function(req,res){
+    let {
+        userId,
+        sex,
+    } = req.body;
+    if (userId){
+        let sqlStr = 'SELECT * from t_user WHERE user_id = ? LIMIT 1;';
+        conn.query(sqlStr,[userId],(error,result,field)=>{
+            if (error){
+                res.json({error_code:1,message:'用户不存在'});
+            } else{
+                //更新数据库
+                let sqlStr = 'UPDATE t_user SET sex = ? WHERE user_id = ?;';
+                conn.query(sqlStr,[sex,userId],(error,result,field)=>{
+                    if (error){
+                        res.json({error_code:1,message:'更新用户性别失败'});
+                    } else{
+                        res.json({success_code:200});
+                    }
+                });
+            }
+        })
+    }
+});
+//更新用户生日
+router.post('/api/updateUserBirthday',function(req,res){
+  let {
+    userId,
+    birthday,
+  } = req.body;
+  if (userId){
+    let sqlStr = 'SELECT * from t_user WHERE user_id = ? LIMIT 1;';
+    conn.query(sqlStr,[userId],(error,result,field)=>{
+      if (error){
+        res.json({error_code:1,message:'用户不存在'});
+      } else{
+        //更新数据库
+        let sqlStr = 'UPDATE t_user SET birthday = ? WHERE user_id = ?;';
+        conn.query(sqlStr,[birthday,userId],(error,result,field)=>{
+          if (error){
+            res.json({error_code:1,message:'更新用户生日失败'});
+          } else{
+            res.json({success_code:200});
+          }
+        });
+      }
+    })
+  }
+});
+//更新用户签名
+router.post('/api/updateUserSign',function(req,res){
+  let {
+    userId,
+    sign,
+  } = req.body;
+  if (userId){
+    let sqlStr = 'SELECT * from t_user WHERE user_id = ? LIMIT 1;';
+    conn.query(sqlStr,[userId],(error,result,field)=>{
+      if (error){
+        res.json({error_code:1,message:'用户不存在'});
+      } else{
+        //更新数据库
+        let sqlStr = 'UPDATE t_user SET sign = ? WHERE user_id = ?;';
+        conn.query(sqlStr,[sign,userId],(error,result,field)=>{
+          if (error){
+            res.json({error_code:1,message:'更新用户签名失败'});
+          } else{
+            res.json({success_code:200});
+          }
+        });
+      }
+    })
+  }
+});
 //更新用户信息
 router.post('/api/updateUserInfo',function(req,res){
   let {
