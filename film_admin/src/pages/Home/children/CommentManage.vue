@@ -105,6 +105,7 @@
 <script>
     import {MessageBox,Message} from 'element-ui'
     import {getCurrentPageComment,passCurrentComment,deleteCurrentComment} from '../../../api/index'
+    import moment from 'moment'
     export default {
         name: "CommentManage",
         data() {
@@ -127,6 +128,9 @@
             let json = await getCurrentPageComment(currentPage,pageSize,input);
             if (json.success_code===200){
               this.tableData = json.data;
+              this.tableData.forEach(value => {
+                value.comment_date = moment(value.comment_date).format('YYYY-MM-DD HH:mm:ss');
+              });
               this.total = json.total;
             }
           },

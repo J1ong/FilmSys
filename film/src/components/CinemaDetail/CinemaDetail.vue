@@ -66,6 +66,7 @@
     import {Indicator} from 'mint-ui';
     import {Carousel,CarouselItem} from 'element-ui'
     import LyTab from 'ly-tab'
+    import { formatDate } from '../../common/util/util';
     Vue.use(Carousel);
     Vue.use(CarouselItem);
     Vue.use(LyTab);
@@ -133,7 +134,7 @@
                         }
                       });
                       if (flag){
-                        movieDate.push({label:val.show_date});
+                        movieDate.push({label:formatDate(new Date(val.show_date),true),date:val.show_date});
                       }
                       movieInfo.push({
                         cinema_id:val.cinema_id,
@@ -149,10 +150,10 @@
                     }
                   });
                   movieDate.sort((a,b)=>{
-                    return a.label-b.label;
+                    return a.date-b.date;
                   });
                   movieInfo.sort((a,b)=>{
-                    return a.label-b.label;
+                    return a.date-b.date;
                   });
                   this.allMovieSchedule[index]={movieDate,movieInfo};
                 });
@@ -162,7 +163,7 @@
                   this.hackReset = true;
                 });
                 this.allMovieSchedule[0].movieInfo.forEach((value)=>{
-                  if (value.show_date === this.allMovieSchedule[0].movieDate[0].label){
+                  if (value.show_date === this.allMovieSchedule[0].movieDate[0].date){
                     this.movieDaySchedule.push(value);
                   }
                 });
@@ -184,7 +185,7 @@
             this.selectedId = 0;
             this.movieDaySchedule = [];
             this.allMovieSchedule[index].movieInfo.forEach((value)=>{
-              if (value.show_date === this.allMovieSchedule[index].movieDate[0].label){
+              if (value.show_date === this.allMovieSchedule[index].movieDate[0].date){
                 this.movieDaySchedule.push(value);
               }
             });
@@ -196,7 +197,7 @@
           changeLyTabItem(item){
             this.movieDaySchedule = [];
             this.allMovieSchedule[this.movieIndex].movieInfo.forEach((value)=>{
-              if (value.show_date === item.label){
+              if (value.show_date === item.date){
                 this.movieDaySchedule.push(value);
               }
             });

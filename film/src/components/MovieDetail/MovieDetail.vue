@@ -63,7 +63,7 @@
                 <div class="scored">给这部作品打了{{currentUserCommentDate[0].user_score}}分</div>
                 <div class="comment-content">{{currentUserCommentDate[0].comment_content}}</div>
                 <div class="bottom">
-                  <span class="comment-date">{{currentUserCommentDate[0].comment_date}}</span>
+                  <span class="comment-date">{{formatCommentDate(currentUserCommentDate[0].comment_date)}}</span>
                   <span class="support" :class="{'active':userIsSupportComment(currentUserCommentDate[0].support_user)}" @click="supportBtnHandle(currentUserCommentDate[0].comment_id)"><span class="icon-support"></span><span class="number">{{currentUserCommentDate[0].support_num}}</span></span>
                 </div>
               </div>
@@ -78,7 +78,7 @@
                 <div class="scored">给这部作品打了{{item.user_score}}分</div>
                 <div class="comment-content">{{item.comment_content}}</div>
                 <div class="bottom">
-                  <span class="comment-date">{{item.comment_date}}</span>
+                  <span class="comment-date">{{formatCommentDate(item.comment_date)}}</span>
                   <span class="support" :class="{'active':userIsSupportComment(item.support_user)}" @click="supportBtnHandle(item.comment_id)"><span class="icon-support"></span><span class="number">{{item.support_num}}</span></span>
                 </div>
               </div>
@@ -106,6 +106,8 @@
     import Vue from 'vue'
     import {Indicator} from 'mint-ui'
     import {Rate} from  'element-ui'
+    import moment from 'moment';
+import { formatDate } from '../../common/util/util';
     Vue.use(Rate)
     export default {
         name: "MovieDetail",
@@ -256,7 +258,6 @@
                       this.averageScore = this.averageScore.toFixed(1);
                     }
                     this.starValue = this.averageScore*0.5;
-                    console.log(currentIndex);
                     if (currentIndex===-1){
                       this.currentUserCommentDate = [];
                     } else{
@@ -280,6 +281,10 @@
             } else {
               return false;
             }
+          },
+          //处理评论日期
+          formatCommentDate(date){
+            return formatDate(new Date(moment(date).format('YYYY-MM-DD HH:mm:ss')),false);
           }
         }
     }

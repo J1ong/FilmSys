@@ -29,6 +29,7 @@
 
 <script>
     import {getMovieDetail,getCurrentMovieSchedule} from '../../api/index'
+    import {formatDate} from '../../common/util/util'
     import {Indicator} from 'mint-ui'
     import Vue from 'vue'
     import LyTab from 'ly-tab'
@@ -67,7 +68,7 @@
                 this.removeRepeat(value, 'cinema_id');
               });
               this.hasCinemaInfo.forEach((value)=>{
-                this.items.push({label:value[0].show_date});
+                this.items.push({label:formatDate(new Date(value[0].show_date),true),date:value[0].show_date});
               });
               this.hackReset = false;
               this.$nextTick(() => {
@@ -80,7 +81,7 @@
           //切换日期
           changeLyTabItem(item){
             this.hasCinemaInfo.forEach((value,index)=>{
-              if (value[0].show_date===item.label){
+              if (value[0].show_date===item.date){
                 this.dateCinemaSchedule = this.cinemaScheduleInfo[index];
               }
             });
