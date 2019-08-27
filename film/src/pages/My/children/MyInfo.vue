@@ -3,74 +3,68 @@
       <div class="top">
         <span class="icon-back" @click="$router.go(-1)"></span>
         <span class="name ellipsis">我的资料</span>
-        <span class="save-btn" @click.prevent=saveUserInfo()>保存</span>
       </div>
       <div class="info-container">
         <div class="list">
-          <div class="item">头像 <div class="right"><img :src="avatar" alt="" width="100%" height="100%"></div></div>
-          <div class="item" @click.prevent="changeUserName">
+          <div class="item">头像 <div class="right">
+            <img :src="avatar" alt="" style="width: 1rem;height: 1rem;border-radius: 50%"><i class="icon-more"></i></div></div>
+          <div class="item" @click.prevent="$router.push({name:'modify_username',params:{userName:userName}})">
             <span>昵称</span>
-            <span>{{userName?userName:'未填写'}}</span>
+            <span class="right">{{userName?userName:'未填写'}}<i class="icon-more"></i></span>
           </div>
-          <div class="item" @click.prevent="changeUserPwd">
-            <span>密码</span>
-            <span>{{userPwd}}</span>
-          </div>
-          <div class="item" @click.prevent="sheetVisible=true">
+          <div class="item" @click.prevent="showSexPanel=true">
             <span>性别</span>
-            <span>{{userSex?userSex:'未填写'}}</span>
+            <span class="right">{{userSex?userSex:'未填写'}}<i class="icon-more"></i></span>
           </div>
-          <div class="item" @click.prevent="$refs.datePicker.open();">
+          <div class="item" @click="showDatePicker=true">
             <span>生日</span>
-            <span>{{birthday?birthday:'未填写'}}</span>
+            <span class="right">{{birthday}}<i class="icon-more"></i></span>
           </div>
-          <div class="item sign">
+          <div class="item sign" @click.prevent="$router.push({name:'modify_usersign',params:{sign:sign}})">
             <span>个人签名</span>
-          </div>
-          <div class="item sign">
-            <el-input
-              type="textarea"
-              v-model="sign"
-              :rows="6"
-              placeholder="同学有点懒，还没有写签名"
-            >
-            </el-input>
+            <span class="right"><span class="ellipsis sign">{{sign?sign:'未填写'}}</span><i class="icon-more"></i></span>
           </div>
         </div>
         <div
           class="logout"
         ><span class="logout-btn" @click="logout()">退出</span></div>
       </div>
-      <mt-actionsheet
-        :actions="actions"
-        v-model="sheetVisible">
-      </mt-actionsheet>
-      <mt-datetime-picker
-        ref="datePicker"
-        v-model="pickerVisible"
-        type="date"
-        :start-date=this.startDate
-        :end-date=this.endDate
-        year-format="{value} 年"
-        month-format="{value} 月"
-        date-format="{value} 日"
-        @confirm="handleBirthday"
-      >
-      </mt-datetime-picker>
+      <div class="modify_sex" v-show="showSexPanel" @click="showSexPanel=false">
+        <div class="container" @click.stop="">
+          <div class="content">
+            <div class="title">修改性别</div>
+            <div class="item" @click="modifyUserSex('男')"><i class="icon-male"></i>男</div>
+            <div class="item" @click="modifyUserSex('女')"><i class="icon-female"></i>女</div>
+          </div>
+        </div>
+      </div>
+      <date-picker
+        :show-picker-model = "showDatePicker"
+        :default-date = "new Date(birthday)"
+        @cancel = "handleCancel"
+        @confirm = "handleConfirm"
+      />
     </div>
 </template>
 
 <script>
     import Vue from 'vue'
+<<<<<<< HEAD
     import {Actionsheet,DatetimePicker,MessageBox,Indicator} from 'mint-ui';
+=======
+    import {DatetimePicker,MessageBox,Indicator} from 'mint-ui';
+>>>>>>> develop
     import moment from 'moment'
     import {Input} from 'element-ui'
+    import DatePicker from '../../../components/DatePicker/DatePicker' //引入日期选择器组件
     Vue.use(Input);
-    Vue.component(Actionsheet.name, Actionsheet);
     Vue.component(DatetimePicker.name, DatetimePicker);
-    import {getUserInfo,updateUserInfo} from '../../../api/index'
+    import {getUserInfo,updateUserInfo,updateUserSex,updateUserBirthday} from '../../../api/index'
     export default {
         name: "MyInfo",
+        components:{
+          DatePicker //注册日期选择器组件
+        },
         data(){
           return{
             userName:'',
@@ -81,17 +75,8 @@
             birthday:'',
             sign:'',
             jsonData:{},
-
-            //选择性别
-            actions:[
-              {name:'男',method:this.selectSex},
-              {name:'女',method:this.selectSex}
-            ],
-            sheetVisible:false,
-            //选择日期
-            pickerVisible:new Date('1990-06-16'),
-            startDate:new Date('1900-01-01'),
-            endDate:new Date()
+            showDatePicker:false,
+            showSexPanel:false,
           }
         },
         created(){
@@ -111,6 +96,15 @@
               this.jsonData.sign?this.sign=this.jsonData.sign:this.sign='';
             }
           },
+          async modifyUserSex(sex){
+            if (this.$cookies.get('user_id')&&sex){
+              let json = await updateUserSex(this.$cookies.get('user_id'),sex);
+              if (json.success_code==200){
+                this.showSexPanel = false;
+                this.userSex = sex;
+              }
+            }
+          },
           //加载用户信息
           async loadUserInfo(){
             if (this.$cookies.get('user_id')) {
@@ -126,25 +120,24 @@
             }
             Indicator.close();
           },
-          //保存用户信息
-          async saveUserInfo(){
-            if (this.$cookies.get('user_id')){
-              let json = await updateUserInfo(this.$cookies.get('user_id'),this.userName,this.avatarSrc,this.userPwd,this.userSex,this.sign,this.birthday);
-              if (json.success_code===200){
-                MessageBox.alert('保存成功');
-              } else if (json.error_code===1) {
-                MessageBox.alert(json.message);
+          //取消按钮
+          handleCancel(){
+            this.showDatePicker = false;
+          },
+          //确定按钮
+          async handleConfirm(selectedDate){
+            if (this.$cookies.get('user_id')&&selectedDate){
+              let json = await updateUserBirthday(this.$cookies.get('user_id'),selectedDate);
+              if (json.success_code==200){
+                this.showDatePicker = false;
+                this.birthday = selectedDate;
               }
             }
           },
-          //选择性别
-          selectSex(props){
-            this.userSex = props.name;
-          },
-          //选择日期
-          //选择日期
-          handleBirthday(props){
-            this.birthday = moment(props).format('YYYY-MM-DD');
+          disableDate(item){
+            if(new Date(item)-new Date('1900-10-10')>=0&&new Date('1990-10-10')-new Date(item)>=0){
+              return true;
+            }
           },
           //修改用户名
           changeUserName(){
@@ -210,12 +203,15 @@
       left 0
       bottom 0
       width 100%
+      background-color: #f1f1f1;
       .list
         background-color #fff
+        margin-top .4rem
         /deep/ .item
           display flex
           justify-content space-between
           align-items center
+<<<<<<< HEAD
           padding .36rem
           border-bottom .02rem solid #f1f1f1
           &:last-child
@@ -228,16 +224,20 @@
               padding 0
               border none
               outline none
+=======
+          padding .3rem .36rem
+          border-bottom .02rem solid #f1f1f1
+>>>>>>> develop
           .right
-            width 1.2rem
-            height 1.2rem
             display flex
             justify-content flex-end
             align-items center
-            border-radius 50%
-            overflow hidden
-        .sign
-          border-bottom 0
+            color #888
+            width 60%
+            .sign
+              display inline-block
+              width 100%
+              text-align right
       .logout
         position fixed
         bottom 0
@@ -256,4 +256,40 @@
           background-color #dd2727
           color #fff
           border-radius .1rem
+    .modify_sex
+      position fixed
+      left 0
+      top 0
+      bottom 0
+      width 100%
+      height 100%
+      background-color rgba(0,0,0,.5)
+      display flex
+      justify-content center
+      align-items center
+      z-index 2040
+      .container
+        position fixed
+        width 5rem
+        height 3rem
+        background-color #fff
+        display flex
+        justify-content center
+        align-items center
+        border-radius .08rem
+        z-index 2041
+        .content
+          width 80%
+          .title
+            font-size .345rem
+            font-weight 700
+            margin-bottom .6rem
+          .item
+            margin-bottom .2rem
+            height .6rem
+            display flex
+            align-items center
+            i
+              font-size .375rem
+              margin-right .24rem
 </style>

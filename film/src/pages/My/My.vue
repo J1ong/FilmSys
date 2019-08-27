@@ -2,7 +2,6 @@
     <div id="my">
       <div
         class="header"
-        @click="viewUserInfo"
       >
         <div class="left">
           <div class="avatar">
@@ -10,11 +9,11 @@
           </div>
           <span @click="$router.push('login')" v-if="!jsonData.user_id" class="go-login">登录/注册</span>
           <div v-else class="user-info">
-            <span>{{jsonData.user_name}}</span>
+            <span class="ellipsis" style="font-size: .375rem;line-height: .6rem;margin-bottom: .12rem">{{jsonData.user_name}}</span>
             <span class="ellipsis">{{jsonData.sign?jsonData.sign:'同学有点懒，还没写下签名'}}</span>
           </div>
         </div>
-        <span class="right icon-more" v-if="jsonData.user_name"></span>
+        <div class="right" v-if="jsonData.user_name" @click="viewUserInfo"><span>个人信息</span><span class="icon-more"></span></div>
       </div>
       <div class="content">
           <div class="list">
@@ -99,7 +98,7 @@
     .header
       font-size .3125rem
       font-weight bolder
-      height 2.4rem
+      height 2.8rem
       display flex
       justify-content space-between
       align-items center
@@ -119,8 +118,8 @@
           box-sizing border-box
           border .08rem solid #f1f1f1
           left 0
-          width 1.4rem
-          height 1.4rem
+          width 1.6rem
+          height 1.6rem
           border-radius 50%
           overflow hidden
           font-size 0
@@ -129,24 +128,31 @@
             height 100%
         .go-login
           position absolute
-          left 1.6rem
+          left 2rem
         .user-info
-          width 80%
+          width 100%
           position absolute
-          left 1.6rem
+          left 2rem
           display flex
           flex-flow column
           span:last-child
-            margin-top .25rem
             font-size .25rem
       .right
-        font-weight bolder
-        margin-right .4rem
+        display flex
+        font-weight lighter
+        justify-content center
+        align-items center
+        font-size .24rem
+        width 1.2rem
+        height .4rem
+        padding 0 .2rem
+        background-color: rgba(255,255,255,.3);
+        border-radius .2rem 0 0 .2rem
     .content
       border-top .4rem solid #f1f1f1
       font-size .3125rem
       position fixed
-      top 2.4rem
+      top 2.8rem
       left 0
       bottom 0
       width 100%
@@ -158,8 +164,12 @@
           justify-content space-between
           align-items center
           padding .3rem
+<<<<<<< HEAD
           font-size .28rem
           font-weight 700
+=======
+          font-size .3125rem
+>>>>>>> develop
           border-bottom .12rem solid #f1f1f1
         .icon-more
           font-weight 700

@@ -6,8 +6,8 @@
       </div>
       <div class="movie">
         <div class="option">
-          <span :class="{active:!isWatched}" @click="changeOption">想看</span>
-          <span :class="{active:isWatched}" @click="changeOption">看过</span>
+          <span :class="{active:!isWatched}" @click="isWatched=false;">想看</span>
+          <span :class="{active:isWatched}" @click="isWatched=true;">看过</span>
         </div>
         <div v-show="!isWatched" class="want">
           <movie-item :movie-list="wishMovie"></movie-item>
@@ -88,11 +88,13 @@
               }
             }
             Indicator.close();
+<<<<<<< HEAD
           },
           changeOption() {
             this.isWatched = !this.isWatched;
+=======
+>>>>>>> develop
           }
-
         }
     }
 </script>

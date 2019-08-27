@@ -68,10 +68,8 @@
         },
         //改变电影类型
         optionMovieType(flag){
-          if (flag!==this.isHotMovie){
-            this.isHotMovie = !this.isHotMovie;
-            window.scroll(0, 0);
-          }
+          this.isHotMovie = flag;
+          window.scroll(0, 0);
         },
       },
     }
