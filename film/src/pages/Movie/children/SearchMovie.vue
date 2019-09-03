@@ -43,6 +43,8 @@
               if (json.success_code===200){
                 this.movieInfo = json.data;
               }
+            }else{
+              this.movieInfo = [];
             }
           }
         }

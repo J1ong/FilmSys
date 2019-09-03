@@ -50,21 +50,22 @@
 <script>
     import Vue from 'vue'
 <<<<<<< HEAD
+<<<<<<< HEAD
     import {Actionsheet,DatetimePicker,MessageBox,Indicator} from 'mint-ui';
 =======
     import {DatetimePicker,MessageBox,Indicator} from 'mint-ui';
 >>>>>>> develop
+=======
+    import {MessageBox,Indicator} from 'mint-ui';
+>>>>>>> develop
     import moment from 'moment'
     import {Input} from 'element-ui'
-    import DatePicker from '../../../components/DatePicker/DatePicker' //引入日期选择器组件
+    import DatePicker from 'vuejs-mobile-datepicker'
+    // import DatePicker from '../../../components/DatePicker/DatePicker' //引入日期选择器组件
     Vue.use(Input);
-    Vue.component(DatetimePicker.name, DatetimePicker);
     import {getUserInfo,updateUserInfo,updateUserSex,updateUserBirthday} from '../../../api/index'
     export default {
         name: "MyInfo",
-        components:{
-          DatePicker //注册日期选择器组件
-        },
         data(){
           return{
             userName:'',
@@ -78,6 +79,9 @@
             showDatePicker:false,
             showSexPanel:false,
           }
+        },
+        components:{
+          DatePicker
         },
         created(){
           Indicator.open('Loading...');
