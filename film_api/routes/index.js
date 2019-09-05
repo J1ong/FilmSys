@@ -125,6 +125,31 @@ router.get('/api/getUserInfo',function(req,res){
     })
   }
 });
+//更新用户头像
+router.post('/api/updateUserAvatar',function(req,res){
+  let {
+      userId,
+      avatar,
+  } = req.body;
+  if (userId){
+      let sqlStr = 'SELECT * from t_user WHERE user_id = ? LIMIT 1;';
+      conn.query(sqlStr,[userId],(error,result,field)=>{
+          if (error){
+              res.json({error_code:1,message:'用户不存在'});
+          } else{
+              //更新数据库
+              let sqlStr = 'UPDATE t_user SET avatar = ? WHERE user_id = ?;';
+              conn.query(sqlStr,[avatar,userId],(error,result,field)=>{
+                  if (error){
+                      res.json({error_code:1,message:'更新用户头像失败'});
+                  } else{
+                      res.json({success_code:200});
+                  }
+              });
+          }
+      })
+  }
+});
 //更新用户名
 router.post('/api/updateUserName',function(req,res){
   let {

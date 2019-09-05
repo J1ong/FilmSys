@@ -9,6 +9,8 @@ export const phoneLogin = (phone,phoneCode)=>ajax('/api/phoneLogin',{phone,phone
 export const pwdLogin = (userName,password,captcha)=>ajax('/api/pwdLogin',{userName,password,captcha},'POST');
 //获取用户信息
 export const getUserInfo = (userId)=>ajax('/api/getUserInfo',{userId});
+//更新用户头像
+export const updateUserAvatar = (userId,avatar)=>ajax('/api/updateUserAvatar',{userId,avatar},'POST');
 //更新用户名
 export const updateUserName = (userId,userName)=>ajax('/api/updateUserName',{userId,userName},'POST');
 //更新用户性别
@@ -17,6 +19,8 @@ export const updateUserSex = (userId,sex)=>ajax('/api/updateUserSex',{userId,sex
 export const updateUserBirthday = (userId,birthday)=>ajax('/api/updateUserBirthday',{userId,birthday},'POST');
 //更新用户签名
 export const updateUserSign = (userId,sign)=>ajax('/api/updateUserSign',{userId,sign},'POST');
+//上传图片到服务器
+export const upLoadImg = (formData)=>ajax('/api/admin/upLoadImg',formData,'POST');
 //更新用户信息
 export const updateUserInfo = (userId,userName,avatar,password,sex,sign,birthday)=>ajax('/api/updateUserInfo',{userId,userName,avatar,password,sex,sign,birthday},'POST');
 //获取电影列表
