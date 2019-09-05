@@ -49,15 +49,7 @@
 
 <script>
     import Vue from 'vue'
-<<<<<<< HEAD
-<<<<<<< HEAD
-    import {Actionsheet,DatetimePicker,MessageBox,Indicator} from 'mint-ui';
-=======
-    import {DatetimePicker,MessageBox,Indicator} from 'mint-ui';
->>>>>>> develop
-=======
     import {MessageBox,Indicator} from 'mint-ui';
->>>>>>> develop
     import moment from 'moment'
     import {Input} from 'element-ui'
     import DatePicker from 'vuejs-mobile-datepicker'
@@ -215,23 +207,8 @@
           display flex
           justify-content space-between
           align-items center
-<<<<<<< HEAD
-          padding .36rem
-          border-bottom .02rem solid #f1f1f1
-          &:last-child
-            padding-top 0
-          .el-textarea
-            font-size .3125rem
-            border none
-            outline none
-            textarea
-              padding 0
-              border none
-              outline none
-=======
           padding .3rem .36rem
           border-bottom .02rem solid #f1f1f1
->>>>>>> develop
           .right
             display flex
             justify-content flex-end

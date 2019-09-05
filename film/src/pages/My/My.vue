@@ -164,12 +164,7 @@
           justify-content space-between
           align-items center
           padding .3rem
-<<<<<<< HEAD
-          font-size .28rem
-          font-weight 700
-=======
           font-size .3125rem
->>>>>>> develop
           border-bottom .12rem solid #f1f1f1
         .icon-more
           font-weight 700

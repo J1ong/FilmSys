@@ -88,12 +88,6 @@
               }
             }
             Indicator.close();
-<<<<<<< HEAD
-          },
-          changeOption() {
-            this.isWatched = !this.isWatched;
-=======
->>>>>>> develop
           }
         }
     }
