@@ -1,6 +1,6 @@
 # 淘气电影
 
-> ### 一个Vue的电影售票项目
+> ### 一个Vue+Express+Mysql的电影售票项目
 
 ## 效果预览
 
@@ -21,22 +21,24 @@
 #### 我的部分
 <img src="https://img-blog.csdnimg.cn/2019071516103314.gif" width="300px">
 
-### 后台管理-用户管理
+### 后台管理
+
+#### 用户管理
 <img src="https://img-blog.csdnimg.cn/2019071516581056.gif" width="600px">
 
-### 后台管理-电影管理
+#### 电影管理
 <img src="https://img-blog.csdnimg.cn/2019071516584577.gif" width="600px">
 
-## Description  
+## 项目说明 
 
-### File      
+### 项目目录     
 
 ├── film 前端页面项目文件   
 ├── film_admin 后台管理系统    
 ├── film_api 前后台接口文件       
 ├── db_film.sql 数据库文件  
 
-### Build Setup
+### 安装步骤
 
 #### 1. 拉取项目
 
@@ -56,9 +58,9 @@ npm install
 
 #### 3. 项目细节
 
-    - [前端页面项目](https://github.com/J1ong/FilmSys/tree/master/film)
-    - [后台管理项目](https://github.com/J1ong/FilmSys/tree/master/film_admin)
-    - [前后台接口项目](https://github.com/J1ong/FilmSys/tree/master/film_api)
+- [前端页面项目](https://github.com/J1ong/FilmSys/tree/master/film)
+- [后台管理项目](https://github.com/J1ong/FilmSys/tree/master/film_admin)
+- [前后台接口项目](https://github.com/J1ong/FilmSys/tree/master/film_api)
 
 #### 4. 启动项目
 
@@ -88,4 +90,3 @@ npm install
     - 浏览器地址栏输入http://localhost:8080/ 可看前端页面，切换到移动设备就可以正常看到移动版页面了
     - 浏览器地址栏输入http://localhost:8081/ 可到后台登录界面（账号：admin，密码：admin） 
     - 接口服务器启动在3000端口
-      
