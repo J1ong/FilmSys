@@ -66,27 +66,27 @@ npm install
 
 ##### 1. 启动前后台接口项目
 
-    ```bash
-    #输入命令前要先进入到film_api中
-    nodemon app.js
-    ```
+```bash
+#输入命令前要先进入到film_api中
+nodemon app.js
+```
 
 ##### 2. 启动前端页面项目
 
-    ```bash
-    #输入命令前同样需要进入到film中
-    npm start
-    ```
+```bash
+#输入命令前同样需要进入到film中
+npm start
+```
 
 ##### 3. 启动后台管理项目
 
-    ```bash
-    #输入命令前同样需要进入到film_admin中
-    npm start
-    ```
+```bash
+#输入命令前同样需要进入到film_admin中
+npm start
+```
 
 #### 5. 最后
 
-    - 浏览器地址栏输入http://localhost:8080/ 可看前端页面，切换到移动设备就可以正常看到移动版页面了
-    - 浏览器地址栏输入http://localhost:8081/ 可到后台登录界面（账号：admin，密码：admin） 
-    - 接口服务器启动在3000端口
+- 浏览器地址栏输入http://localhost:8080/ 可看前端页面，切换到移动设备就可以正常看到移动版页面了
+- 浏览器地址栏输入http://localhost:8081/ 可到后台登录界面（账号：admin，密码：admin） 
+- 接口服务器启动在3000端口
