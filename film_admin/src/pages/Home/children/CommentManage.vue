@@ -1,8 +1,8 @@
 <template>
     <div id="comment-manage">
       <!--搜索-->
-      <div class="top" style="margin-top: 15px;">
-        <el-col :span="12" :offset="6">
+      <div class="top">
+        <el-col :span="12">
           <el-input placeholder="请输入内容" v-model="input" class="input-with-select" style="width: 100%">
             <el-button slot="append" icon="el-icon-search" @click="search">搜索</el-button>
           </el-input>
@@ -14,40 +14,8 @@
       <div class="comment-table">
         <el-table
           border
-          height="476px"
-          max-height="476px"
           :data="tableData"
           style="width: 100%">
-          <el-table-column type="expand">
-            <template slot-scope="props">
-              <el-form label-position="left" inline class="demo-table-expand">
-                <el-form-item label="用户 ID">
-                  <span>{{ props.row.user_id }}</span>
-                </el-form-item>
-                <el-form-item label="用户名">
-                  <span>{{ props.row.user_name }}</span>
-                </el-form-item>
-                <el-form-item label="电影 ID">
-                  <span>{{ props.row.movie_id }}</span>
-                </el-form-item>
-                <el-form-item label="电影名">
-                  <span>{{ props.row.name}}</span>
-                </el-form-item>
-                <el-form-item label="评论时间">
-                  <span>{{ props.row.comment_date }}</span>
-                </el-form-item>
-                <el-form-item label="用户评分">
-                  <span>{{ props.row.user_score }}</span>
-                </el-form-item>
-                <el-form-item label="点赞数">
-                  <span>{{ props.row.support_num}}</span>
-                </el-form-item>
-                <el-form-item label="评论内容">
-                  <span>{{ props.row.comment_content }}</span>
-                </el-form-item>
-              </el-form>
-            </template>
-          </el-table-column>
           <el-table-column
             label="评论 ID"
             align="center"
@@ -56,18 +24,24 @@
           </el-table-column>
           <el-table-column
             label="用户名"
+            width="120"
+            show-overflow-tooltip
             prop="user_name">
           </el-table-column>
           <el-table-column
             label="电影名"
+            show-overflow-tooltip
             prop="name">
           </el-table-column>
           <el-table-column
             label="评论时间"
+            show-overflow-tooltip
             prop="comment_date">
           </el-table-column>
           <el-table-column
             label="用户评分"
+            width="80"
+            align="center"
             prop="user_score">
           </el-table-column>
           <el-table-column
@@ -75,7 +49,9 @@
             show-overflow-tooltip
             prop="comment_content">
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column 
+          align="center"
+          label="操作">
             <template slot-scope="scope">
               <el-button
                 v-if="!scope.row.is_pass"
@@ -169,25 +145,17 @@
 
 <style>
   .comment-table{
-    margin-bottom: 20px;
+    width:90%;
+    min-width:900px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   }
   .top{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
-  }
-  .demo-table-expand {
-    font-size: 0;
-  }
-  .demo-table-expand label {
-    width: 90px;
-    color: #99a9bf;
-  }
-  .demo-table-expand .el-form-item {
-    margin-right: 0;
-    margin-bottom: 0;
-    width: 50%;
+    padding: 30px 0;
+    margin-bottom: 30px;
   }
   .block{
     text-align: center;

@@ -1,8 +1,8 @@
 <template>
   <div id="hall-manage">
     <!--搜索-->
-    <div class="top" style="margin-top: 15px;">
-      <el-col :span="12" :offset="6">
+    <div class="top">
+      <el-col :span="12">
         <el-input placeholder="请输入内容" v-model="input" class="input-with-select" style="width: 100%">
           <el-button slot="append" icon="el-icon-search" @click="search">搜索</el-button>
         </el-input>
@@ -15,7 +15,6 @@
     <div class="hall-table">
       <el-table
         border
-        height="476px"
         :data="tableData"
       >
         <el-table-column
@@ -26,17 +25,25 @@
         </el-table-column>
         <el-table-column
           label="影院名"
+          show-overflow-tooltip
           prop="cinema_name">
         </el-table-column>
         <el-table-column
           label="影院电话"
+          align="center"
+          width="120"
           prop="cinema_phone">
         </el-table-column>
         <el-table-column
           label="影厅名"
+          width="200"
+          show-overflow-tooltip
           prop="name">
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column 
+        width="200"
+        align="center"
+        label="操作">
           <template slot-scope="scope">
             <el-button
               size="mini"
@@ -255,13 +262,17 @@
 
 <style>
   .hall-table{
-    margin-bottom: 20px;
+    width:90%;
+    min-width:900px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   }
   .top{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
+    padding: 30px 0;
+    margin-bottom: 30px;
   }
   .block{
     text-align: center;

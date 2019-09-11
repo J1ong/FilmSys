@@ -1,8 +1,8 @@
 <template>
     <div id="movie-manage">
       <!--搜索-->
-      <div class="top" style="margin-top: 15px;">
-        <el-col :span="12" :offset="6">
+      <div class="top">
+        <el-col :span="12">
           <el-input placeholder="请输入内容" v-model="input" class="input-with-select" style="width: 100%">
             <el-button slot="append" icon="el-icon-search" @click="search">搜索</el-button>
           </el-input>
@@ -15,53 +15,7 @@
       <div class="movie-table">
         <el-table
           border
-          height="476px"
-          max-height="476px"
-          :data="tableData"
-          style="width: 100%">
-          <el-table-column type="expand">
-            <template slot-scope="props">
-              <el-form label-position="left" inline class="demo-table-expand">
-                <el-form-item label="电影 ID">
-                  <span>{{ props.row.movie_id }}</span>
-                </el-form-item>
-                <el-form-item label="电影名">
-                  <span>{{ props.row.name }}</span>
-                </el-form-item>
-                <el-form-item label="导演">
-                  <span>{{ props.row.director }}</span>
-                </el-form-item>
-                <el-form-item label="评分">
-                  <span>{{ props.row.score?props.row.score:'暂无评分'}}</span>
-                </el-form-item>
-                <el-form-item label="主演">
-                  <span>{{ props.row.actor}}</span>
-                </el-form-item>
-                <el-form-item label="片长">
-                  <span>{{ props.row.movie_long}}</span>
-                </el-form-item>
-                <el-form-item label="语言">
-                  <span>{{ props.row.language }}</span>
-                </el-form-item>
-                <el-form-item label="类型">
-                  <span>{{ props.row.type}}</span>
-                </el-form-item>
-                <el-form-item label="上映时间">
-                  <span>{{ props.row.public_date}}</span>
-                </el-form-item>
-                <el-form-item label="想看人数">
-                  <span>{{ props.row.wish_num}}</span>
-                </el-form-item>
-                <el-form-item label="海报">
-                  <br>
-                  <span style="width: 150px;height: 200px;"><img :src="server+props.row.poster" alt="" width="150px" height="200px"></span>
-                </el-form-item>
-                <el-form-item label="简介">
-                  <span>{{ props.row.intro}}</span>
-                </el-form-item>
-              </el-form>
-            </template>
-          </el-table-column>
+          :data="tableData">
           <el-table-column
             label="电影 ID"
             align="center"
@@ -70,25 +24,33 @@
           </el-table-column>
           <el-table-column
             label="电影名"
+            show-overflow-tooltip
             prop="name">
           </el-table-column>
           <el-table-column
             label="导演"
+            align="center"
+            show-overflow-tooltip
             prop="director">
           </el-table-column>
-          <el-table-column
+          <!-- <el-table-column
             label="主演"
             prop="actor">
-          </el-table-column>
+          </el-table-column> -->
           <el-table-column
             label="类型"
+            align="center"
+            width="100"
             prop="type">
           </el-table-column>
           <el-table-column
             label="上映时间"
             prop="public_date">
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column 
+          width="200"
+          align="center"
+          label="操作">
             <template slot-scope="scope">
               <el-button
                 size="mini"
@@ -418,29 +380,18 @@
 </script>
 
 <style>
-  #movie-manage{
-    height: 100%;
-  }
   .movie-table{
-    margin-bottom: 20px;
+    width:90%;
+    min-width:900px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   }
   .top{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
-  }
-  .demo-table-expand {
-    font-size: 0;
-  }
-  .demo-table-expand label {
-    width: 90px;
-    color: #99a9bf;
-  }
-  .demo-table-expand .el-form-item {
-    margin-right: 0;
-    margin-bottom: 0;
-    width: 50%;
+    padding: 30px 0;
+    margin-bottom: 30px;
   }
   .block{
     text-align: center;

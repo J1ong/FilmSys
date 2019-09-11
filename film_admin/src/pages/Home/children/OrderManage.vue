@@ -1,8 +1,8 @@
 <template>
   <div id="order-manage">
     <!--搜索-->
-    <div class="top" style="margin-top: 15px;">
-      <el-col :span="12" :offset="6">
+    <div class="top">
+      <el-col :span="12">
         <el-input placeholder="请输入内容" v-model="input" class="input-with-select" style="width: 100%">
           <el-button slot="append" icon="el-icon-search" @click="search">搜索</el-button>
         </el-input>
@@ -13,53 +13,9 @@
     <!--表格-->
     <div class="order-table">
       <el-table
-        height="476px"
-        max-height="476px"
         border
         :data="tableData"
         style="width: 100%">
-        <el-table-column type="expand">
-          <template slot-scope="props">
-            <el-form label-position="left" inline class="demo-table-expand">
-              <el-form-item label="用户 ID">
-                <span>{{ props.row.user_id }}</span>
-              </el-form-item>
-              <el-form-item label="用户名">
-                <span>{{ props.row.user_name }}</span>
-              </el-form-item>
-              <el-form-item label="电影 ID">
-                <span>{{ props.row.movie_id }}</span>
-              </el-form-item>
-              <el-form-item label="电影名">
-                <span>{{ props.row.name}}</span>
-              </el-form-item>
-              <el-form-item label="影院 ID">
-                <span>{{ props.row.cinema_id }}</span>
-              </el-form-item>
-              <el-form-item label="影院名">
-                <span>{{ props.row.cinema_name}}</span>
-              </el-form-item>
-              <el-form-item label="订单电话">
-                <span>{{ props.row.order_phone }}</span>
-              </el-form-item>
-              <el-form-item label="订单日期">
-                <span>{{ props.row.order_date }}</span>
-              </el-form-item>
-              <el-form-item label="票数">
-                <span>{{ props.row.ticket_num}}</span>
-              </el-form-item>
-              <el-form-item label="总价">
-                <span>{{ props.row.ticket_total_price }}</span>
-              </el-form-item>
-              <el-form-item label="支付方式">
-                <span>{{ props.row.pay_type===1?'支付宝':'微信' }}</span>
-              </el-form-item>
-              <el-form-item label="取票码">
-                <span>{{ props.row.phone_code }}</span>
-              </el-form-item>
-            </el-form>
-          </template>
-        </el-table-column>
         <el-table-column
           label="订单 ID"
           align="center"
@@ -68,6 +24,8 @@
         </el-table-column>
         <el-table-column
           label="用户名"
+          width="120"
+          show-overflow-tooltip
           prop="user_name">
         </el-table-column>
         <el-table-column
@@ -82,21 +40,29 @@
         </el-table-column>
         <el-table-column
           label="票数"
+          align="center"
           prop="ticket_num">
         </el-table-column>
         <el-table-column
           label="总价"
+          width="100"
+          align="center"
           prop="ticket_total_price">
         </el-table-column>
         <el-table-column
           label="取票码"
+          align="center"
           prop="phone_code">
         </el-table-column>
         <el-table-column
           label="下单时间"
+          show-overflow-tooltip
           prop="order_date">
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column 
+        width="100"
+        align="center"
+        label="操作">
           <template slot-scope="scope">
             <el-button
               size="mini"
@@ -174,25 +140,17 @@
 
 <style>
   .order-table{
-    margin-bottom: 20px;
+    width:90%;
+    min-width:900px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   }
   .top{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
-  }
-  .demo-table-expand {
-    font-size: 0;
-  }
-  .demo-table-expand label {
-    width: 90px;
-    color: #99a9bf;
-  }
-  .demo-table-expand .el-form-item {
-    margin-right: 0;
-    margin-bottom: 0;
-    width: 50%;
+    padding: 30px 0;
+    margin-bottom: 30px;
   }
   .block{
     text-align: center;

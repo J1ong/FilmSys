@@ -1,8 +1,8 @@
 <template>
     <div id="movie-schedule">
       <!--搜索-->
-      <div class="top" style="margin-top: 15px;">
-        <el-col :span="12" :offset="6">
+      <div class="top">
+        <el-col :span="12">
           <el-input placeholder="请输入内容" v-model="input" class="input-with-select" style="width: 100%">
             <el-button slot="append" icon="el-icon-search" @click="search">搜索</el-button>
           </el-input>
@@ -15,46 +15,8 @@
       <div class="schedule-table">
         <el-table
           border
-          height="476px"
-          max-height="476px"
           :data="tableData"
           style="width: 100%">
-          <el-table-column type="expand">
-            <template slot-scope="props">
-              <el-form label-position="left" inline class="demo-table-expand">
-                <el-form-item label="电影 ID">
-                  <span>{{ props.row.movie_id }}</span>
-                </el-form-item>
-                <el-form-item label="电影名">
-                  <span>{{ props.row.name }}</span>
-                </el-form-item>
-                <el-form-item label="影院 ID">
-                  <span>{{ props.row.cinema_id}}</span>
-                </el-form-item>
-                <el-form-item label="影院名">
-                  <span>{{ props.row.cinema_name}}</span>
-                </el-form-item>
-                <el-form-item label="联系电话">
-                  <span>{{ props.row.cinema_phone}}</span>
-                </el-form-item>
-                <el-form-item label="详细地址">
-                  <span>{{ props.row.specified_address}}</span>
-                </el-form-item>
-                <el-form-item label="放映大厅">
-                  <span>{{ props.row.hall_name}}</span>
-                </el-form-item>
-                <el-form-item label="放映日期">
-                  <span>{{ props.row.show_date}}</span>
-                </el-form-item>
-                <el-form-item label="放映时间">
-                  <span>{{ props.row.show_time}}</span>
-                </el-form-item>
-                <el-form-item label="售价（元）">
-                  <span>{{ props.row.price}}</span>
-                </el-form-item>
-              </el-form>
-            </template>
-          </el-table-column>
           <el-table-column
             label="排片 ID"
             align="center"
@@ -87,7 +49,10 @@
             label="售价（元）"
             prop="price">
           </el-table-column>
-          <el-table-column label="操作">
+          <el-table-column 
+          width="100"
+          align="center"
+          label="操作">
             <template slot-scope="scope">
               <el-button
                 size="mini"
@@ -413,29 +378,18 @@
 </script>
 
 <style>
-  #movie-schedule{
-    height: 100%;
-  }
   .schedule-table{
-    margin-bottom: 20px;
+    width:90%;
+    min-width:900px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   }
   .top{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
-  }
-  .demo-table-expand {
-    font-size: 0;
-  }
-  .demo-table-expand label {
-    width: 90px;
-    color: #99a9bf;
-  }
-  .demo-table-expand .el-form-item {
-    margin-right: 0;
-    margin-bottom: 0;
-    width: 50%;
+    padding: 30px 0;
+    margin-bottom: 30px;
   }
   .block{
     text-align: center;
