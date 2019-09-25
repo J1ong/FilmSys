@@ -145,7 +145,7 @@
             hallInfo:{},
             dialogFormVisible:false,
             dialogTitle:'',
-            labelPosition:'left',
+            labelPosition:'right',
             input:'',
             searchInput:'',
             hallOldName:'',

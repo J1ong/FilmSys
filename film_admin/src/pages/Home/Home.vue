@@ -14,7 +14,7 @@
             height="40px"
             style="border-radius: 20px"
           />
-          <el-dropdown style="margin-left:12px" trigger="click">
+          <el-dropdown style="margin-left:12px">
             <span class="el-dropdown-link">
               {{adminInfo.name}}
               <i class="el-icon-arrow-down el-icon--right"></i>
@@ -27,7 +27,7 @@
         </div>
       </div>
     </el-row>
-    <el-row class="container" style="padding-top: 60px">
+    <el-row class="container">
       <div class="section">
         <div class="nav-bar">
           <el-menu :default-active="currentMenuIndex" class="el-menu-vertical">
@@ -127,7 +127,6 @@ export default {
 #home {
   width: 100%;
   height: 100%;
-  overflow: scroll;
   background-color: #fff;
 }
 .left,
@@ -141,12 +140,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 100%;
   min-width: 1200px;
-  background-color: #ecf5ff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  background-color: #f5f5f5;
 }
 .container .section {
   width: 80%;
@@ -156,31 +152,29 @@ export default {
   align-content: flex-start;
   height: 100%;
   box-sizing: border-box;
+  margin-top: 30px;
 }
 .nav-bar {
   width: 10%;
   min-width: 200px;
-  background-color: #fff;
-  margin-right: 20px;
-  box-shadow: 0 0 8px 1px #ccc;
+  border-bottom: 1px solid #e9eaeb;
 }
 .container .content {
   width: 90%;
   min-width: 1000px;
-  height: 750px;
+  height: 720px;
   padding-top: 30px;
   background-color: #fff;
-  box-shadow: 0 0 8px 1px #ccc;
+  border: 1px solid #e9eaeb;
+  border-left: none;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
 }
 </style>
 <style>
 #home .header {
-  position: fixed;
-  left: 0;
-  top: 0;
   width: 100%;
   min-width: 1200px;
-  height: 60px;
+  height: 64px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -206,12 +200,23 @@ export default {
 #home .el-icon-arrow-down {
   font-size: 12px;
 }
-#home .el-menu {
-  margin-top: 24px;
+#home .el-menu{
   border: none;
+  border: 1px solid #e9eaeb;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+}
+#home .el-menu-item{
+  height: 50px;
+  line-height: 50px;
+}
+#home .el-menu-item,#home .el-menu-item i{
+  color: #3c4043;
 }
 #home .el-menu-item.is-active {
   color: #fff;
   background-color: #409eff;
+}
+#home .el-menu-item.is-active i {
+  color: #fff;
 }
 </style>

@@ -9,17 +9,8 @@
 #### 整体部分
 <img src="https://img-blog.csdnimg.cn/20190715155903552.gif" width="300px">
 
-#### 购票部分
+#### 购票流程
 <img src="https://img-blog.csdnimg.cn/20190715160906822.gif" width="300px">
-
-#### 电影部分
-<img src="https://img-blog.csdnimg.cn/20190715160935984.gif" width="300px">
-
-#### 影院部分
-<img src="https://img-blog.csdnimg.cn/20190715161007301.gif" width="300px">
-
-#### 我的部分
-<img src="https://img-blog.csdnimg.cn/2019071516103314.gif" width="300px">
 
 ### 后台管理
 
@@ -27,7 +18,7 @@
 <img src="https://img-blog.csdnimg.cn/20190911161535557.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTM4MjE4Nw==,size_16,color_FFFFFF,t_70" width="600px">
 
 #### 管理页
-<img src="https://img-blog.csdnimg.cn/20190911161709253.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTM4MjE4Nw==,size_16,color_FFFFFF,t_70" width="600px">
+<img src="https://img-blog.csdnimg.cn/2019092514452441.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTM4MjE4Nw==,size_16,color_FFFFFF,t_70" width="600px">
 
 ## 项目说明 
 
