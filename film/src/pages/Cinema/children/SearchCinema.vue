@@ -3,7 +3,7 @@
       <div class="header">
         <div class="search">
           <span class="icon-search"></span>
-          <input type="text" placeholder="搜影院" v-model="name"/>
+          <input type="text" placeholder="搜影院" v-model.trim="name"/>
         </div>
         <span class="cancel-btn" @click="$router.go(-1)">取消</span>
       </div>
@@ -12,7 +12,7 @@
         <!--<div class="title">影院</div>-->
         <div class="item" v-for="(item,index) in cinemaInfo" :key="index" @click="$router.push({path:'/cinema_detail',query:{cinema_id:item.cinema_id}})">
           <div class="left">
-            <div class="name ellipsis">{{item.cinema_name}}</div>
+            <div class="name ellipsis" v-html="ruleName(item.cinema_name)"></div>
             <div class="address ellipsis">{{item.specified_address}}</div>
             <div class="label-block"><span>小吃</span><span>4D厅</span><span>杜比全景声厅</span><span>巨幕厅</span></div>
           </div>
@@ -37,17 +37,29 @@
           return{
             name:'',
             cinemaInfo:[],
+            timer:''
           }
         },
         watch:{
-          async name(){
-            if (this.name){
-              let json = await matchCinemaByName(this.name);
+          name(newVal,oldVal){
+            this.cinemaInfo = [];
+            clearTimeout(this.timer);
+            if(newVal){
+              this.timer = setTimeout(async() => {
+              let json = await matchCinemaByName(newVal);
               if (json.success_code===200){
                 this.cinemaInfo = json.data;
               }
-            }else{
-              this.cinemaInfo = [];
+            }, 500);
+            }
+          }
+        },
+        computed:{
+          ruleName(){
+            return (nameString)=>{
+              let replaceReg = new RegExp(this.name,'g');
+              let replaceString = `<span style="color: #dd2727">${this.name}</span>`;
+              return nameString.replace(replaceReg,replaceString);
             }
           }
         }

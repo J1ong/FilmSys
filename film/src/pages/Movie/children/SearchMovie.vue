@@ -3,14 +3,14 @@
       <div class="header">
         <div class="search">
           <span class="icon-search"></span>
-          <input type="text" placeholder="搜影片" v-model="name"/>
+          <input type="text" placeholder="搜影片" v-model.trim="name"/>
         </div>
         <span class="cancel-btn" @click="$router.go(-1)">取消</span>
       </div>
     <div class="content">
       <div class="movie-container" v-if="movieInfo.length">
         <!--<div class="title">影片</div>-->
-        <movie-item :movie-list="movieInfo"></movie-item>
+        <movie-item :movie-list="movieInfo" :search-name="name"></movie-item>
       </div>
       <div class="tips" v-else-if="name">
         <span class="icon icon-empty-content"></span>
@@ -34,17 +34,20 @@
             movieInfo:[],
             //服务器地址
             server:'http://localhost:3000',
+            timer:''
           }
         },
         watch:{
-          async name(){
-            if (this.name){
-              let json =await matchMovieByName(this.name);
-              if (json.success_code===200){
-                this.movieInfo = json.data;
-              }
-            }else{
+          name(newVal,oldVal){
               this.movieInfo = [];
+              clearTimeout(this.timer);
+              if (newVal){
+                this.timer = setTimeout(async() => {
+                let json =await matchMovieByName(newVal);
+                if (json.success_code===200){
+                  this.movieInfo = json.data;
+                }
+              }, 500);
             }
           }
         }
