@@ -10,7 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "element-ui": "^2.7.0",
     "ly-tab": "^2.1.2",
     "mint-ui": "^2.2.13",
