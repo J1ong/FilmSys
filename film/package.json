@@ -14,7 +14,7 @@
     "element-ui": "^2.7.0",
     "ly-tab": "^2.1.2",
     "mint-ui": "^2.2.13",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "swiper": "^4.5.0",
