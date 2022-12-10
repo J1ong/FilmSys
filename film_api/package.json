@@ -9,7 +9,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
-    "express": "~4.16.0",
+    "express": "~4.17.3",
     "express-session": "^1.16.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
